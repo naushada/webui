@@ -39,6 +39,7 @@ export class ShipmentListComponent implements AfterViewInit {
   }
 
   ngOnInit() {
+    this.dataSource.data.length = 0;
     this.onGetShipmentList();
   }
 
@@ -73,7 +74,7 @@ export class ShipmentListComponent implements AfterViewInit {
       (sh: Shipment[]) => { this.awbList = new ShipmentList(sh, sh.length);},
 
       /** onError */
-      (error:any) => {},
+      (error:any) => {this.dataSource.data.length = 0; alert("No Shipment Found")},
 
       /** onComplete */
       () => {
