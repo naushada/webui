@@ -1,6 +1,5 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginPageComponent } from './login/login-page/login-page.component';
 import { MenubarComponent } from './menubar/menubar.component';
@@ -21,8 +20,7 @@ const routes: Routes = [
   {path: 'singleShipment', component:SingleAwbComponent},
   {path: 'multipleShipment', component:MultipleAwbComponent},
   {path: 'updateShipmentStatus', component:UpdateStatusAwbComponent},
-  {path: 'login', component:AppComponent},
-  //{path: 'login', component:LoginPageComponent},
+  {path: 'login', component:LoginPageComponent},
   //{path: '', component:LoginPageComponent},
 ];
 

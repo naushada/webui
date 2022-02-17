@@ -79,11 +79,11 @@ export class MenubarComponent implements OnInit, OnDestroy {
   public onLogout() : void {
     this.showMenubar = false;
     this.showNavbar = false;
-    this.rt.navigate(['/login']);
-    /*
+    //this.rt.navigate(['/login']);
+    
     let acc: Account = new Account();
     acc.name = "";
-    this.pubsub.emit_accountInfo(acc);*/
+    this.pubsub.emit_accountInfo(acc);
   }
 
   public canItBeDisplayed(menuItem: string) : boolean {
