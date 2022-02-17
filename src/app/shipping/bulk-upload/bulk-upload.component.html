@@ -1,0 +1,15 @@
+<div>
+  <form [formGroup]="xlsUploadForm" novalidate (ngSubmit)="onXLSUpload()">
+    <mat-form-field class="full-width" >
+      <!--<input matInput type="file" placeholder="Select XLS file to Upload" formControlName="xlsUpload" (change)="onXlsSelect($event)">-->
+      <ngx-mat-file-input formControlName="xlsUpload">
+      </ngx-mat-file-input>
+      <mat-error *ngIf="xlsUploadForm.controls['xlsUpload'].hasError('required')">
+        XLS File is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <div>
+      <button mat-raised-button color="primary" [disabled]="isBtnDisabled" type="submit">Upload Now</button>
+  </div>
+  </form>
+</div>
