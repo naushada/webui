@@ -21,7 +21,7 @@ const routes: Routes = [
   {path: 'multipleShipment', component:MultipleAwbComponent},
   {path: 'updateShipmentStatus', component:UpdateStatusAwbComponent},
   {path: 'login', component:LoginPageComponent},
-  {path: '', component:LoginPageComponent},
+  //{path: '', component:LoginPageComponent},
 ];
 
 @NgModule({

@@ -24,7 +24,6 @@ export class LoginPageComponent {
   }
 
   onLogin(): void {
-
     this.isBtnDisabled = true;
     let id:string = this.loginForm.value.id;
     let pwd:string = this.loginForm.value.password;
@@ -34,7 +33,7 @@ export class LoginPageComponent {
       (acc: Account) => {
           /** publish account to subscribers */
           this.on.emit_accountInfo(acc);
-          this.rt.navigate(['/webui']);
+          //this.rt.navigate(['/webui']);
       },
       /** onError */
       (error: any) => {this.isBtnDisabled = false;},

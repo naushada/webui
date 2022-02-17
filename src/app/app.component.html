@@ -1,7 +1,13 @@
 <!--<app-bulk-upload></app-bulk-upload>-->
 <!--<app-nav></app-nav>-->
-<!--<app-menubar></app-menubar>-->
+<ng-container *ngIf="!isUserLoggedIn">
+    <app-login-page></app-login-page>
+</ng-container>
+<ng-container *ngIf="isUserLoggedIn">
+    <app-menubar></app-menubar>
+</ng-container>
+
 <!--<app-dashboard></app-dashboard>-->
 <!--<app-shipment-list></app-shipment-list>-->
-<!--<app-login-page></app-login-page>-->
+
 <router-outlet></router-outlet>
