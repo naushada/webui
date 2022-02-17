@@ -16,20 +16,37 @@ export class MenubarComponent implements OnInit, OnDestroy {
    */
   private mMenuSelected: string;
   private mUserName: string;
-  private mIsDashboard: boolean;
-  private mLogin: boolean;
   private subs: Subscription;
   private mMenuItem: string;
+  private mShowMenubar: boolean;
+  private mShowNavbar: boolean;
+
   constructor(private rt: Router, private pubsub: PubsubService) { 
 
     this.mMenuSelected = "dashboard";
     this.mUserName = "";
-    this.mIsDashboard = true;
-    this.mLogin = false;
     this.mMenuItem = "";
+    this.mShowMenubar = true;
+    this.mShowNavbar = false;
 
-    this.subs = this.pubsub.onAccount.subscribe((acct: Account) => {this.userName = acct.name; this.isLogin = true;});
+    this.subs = this.pubsub.onAccount.subscribe((acct: Account) => {this.userName = acct.name;});
 
+  }
+
+  get showNavbar() : boolean {
+    return(this.mShowNavbar);
+  }
+
+  set showNavbar(item: boolean) {
+    this.mShowNavbar = item;
+  }
+
+  get showMenubar() : boolean {
+    return(this.mShowMenubar);
+  }
+
+  set showMenubar(item: boolean) {
+    this.mShowMenubar = item;
   }
 
   /**
@@ -37,18 +54,20 @@ export class MenubarComponent implements OnInit, OnDestroy {
    */
   ngOnInit(): void {
     //this.onMenuSelect('dashboard');
-    this.isLogin = true;
-    this.isDashboard = true;
+    this.showMenubar = true;
+    this.showNavbar = false;
   }
 
   public onMenuSelect(item: string) : void {
-    this.mMenuSelected = item;
+    this.menuSelected = item;
         
     if(item == 'dashboard') {
-      this.isDashboard = true;
-      this.rt.navigate(['/dashboard'])
+      this.showNavbar = false;
+      this.showMenubar = true;
+
+      //this.rt.navigate(['/dashboard'])
     } else {
-      this.isDashboard = false;
+      this.showNavbar = true;
       //this.rt.navigate(['/webui'])
     }
   }
@@ -58,8 +77,8 @@ export class MenubarComponent implements OnInit, OnDestroy {
   }
 
   public onLogout() : void {
-    this.mLogin = false;
-    this.isDashboard = true;
+    this.showMenubar = false;
+    this.showNavbar = true;
     this.rt.navigate(['/login']);
   }
 
@@ -74,8 +93,11 @@ export class MenubarComponent implements OnInit, OnDestroy {
   }
 
   public onDashboard(menuItem: string): boolean {
-    if(menuItem == 'dashboard')
-      return(false)
+    if(menuItem == 'dashboard') {
+      this.showMenubar = true;
+      this.showNavbar = false;
+      return(false);
+    }
 
     return(true);
   }
@@ -89,22 +111,6 @@ export class MenubarComponent implements OnInit, OnDestroy {
 
   public set userName(name:string) {
     this.mUserName = name;
-  }
-
-  public get isDashboard(): boolean {
-    return this.mIsDashboard;
-  }
-
-  public set isDashboard(elm:boolean) {
-    this.mIsDashboard = elm;
-  }
-
-  public get isLogin(): boolean {
-    return this.mLogin;
-  }
-
-  public set isLogin(item: boolean) {
-    this.mLogin = item;
   }
 
   get menuSelected(): string {

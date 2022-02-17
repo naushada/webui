@@ -1,4 +1,4 @@
-<ng-container *ngIf="isLogin">
+<ng-container *ngIf="showMenubar">
 <mat-toolbar color="primary">
     <button mat-icon-button (click)="onMenuSelect('dashboard')">
       <mat-icon>dashboard</mat-icon>
@@ -15,7 +15,7 @@
     </div>
     <span class="example-spacer"></span>
 
-    <button mat-button [matMenuTriggerFor]="menu">{{userName}}<mat-icon>account_circle</mat-icon></button>
+    <button mat-button [matMenuTriggerFor]="menu" class="font-sz18">{{userName}}<mat-icon>account_circle</mat-icon></button>
     <mat-menu #menu="matMenu">
         <button mat-menu-item (click)="onProfile()"><mat-icon>info</mat-icon> Profile</button>
         <button mat-menu-item (click)="onLogout()"><mat-icon>logout</mat-icon> Logout</button>
@@ -24,7 +24,7 @@
 </mat-toolbar>
 </ng-container>
 <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav mode="side" [opened]="!isDashboard" class="sidenav">
+    <mat-sidenav mode="side" [opened]="showNavbar" class="sidenav">
     <!-- Shipping -->
         <ng-container *ngIf="canItBeDisplayed('shipping')">
             <mat-nav-list>
@@ -94,6 +94,10 @@
         <ng-container *ngIf="isDashboard">
             <app-dashboard></app-dashboard>
         </ng-container>-->
+        <ng-container *ngIf="canItBeDisplayed('dashboard')">
+            <app-dashboard></app-dashboard>
+        </ng-container>
+
         <router-outlet></router-outlet>
     </mat-sidenav-content>
     
