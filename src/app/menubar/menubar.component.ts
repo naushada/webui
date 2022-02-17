@@ -28,7 +28,7 @@ export class MenubarComponent implements OnInit, OnDestroy {
     this.mLogin = false;
     this.mMenuItem = "";
 
-    this.subs = this.pubsub.onAccount.subscribe((acct: Account) => {this.userName = acct.name;});
+    this.subs = this.pubsub.onAccount.subscribe((acct: Account) => {this.userName = acct.name; this.isLogin = true;});
 
   }
 
