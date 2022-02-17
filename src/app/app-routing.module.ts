@@ -11,7 +11,7 @@ import { SingleAwbComponent } from './tracking/single-awb/single-awb.component';
 import { UpdateStatusAwbComponent } from './tracking/update-status-awb/update-status-awb.component';
 
 const routes: Routes = [
-  {path: '', component:LoginPageComponent},
+  
   {path: 'createShipment', component:NewShipmentComponent},
   {path: 'createBatchShipment', component:BulkUploadComponent},
   {path: 'shipmentList', component:ShipmentListComponent},
@@ -20,6 +20,7 @@ const routes: Routes = [
   {path: 'singleShipment', component:SingleAwbComponent},
   {path: 'multipleShipment', component:MultipleAwbComponent},
   {path: 'updateShipmentStatus', component:UpdateStatusAwbComponent},
+  {path: '', component:LoginPageComponent},
 ];
 
 @NgModule({
