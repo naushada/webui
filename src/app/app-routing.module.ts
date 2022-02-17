@@ -11,7 +11,7 @@ import { SingleAwbComponent } from './tracking/single-awb/single-awb.component';
 import { UpdateStatusAwbComponent } from './tracking/update-status-awb/update-status-awb.component';
 
 const routes: Routes = [
-  {path: 'login', component:LoginPageComponent},
+  {path: '', component:LoginPageComponent},
   {path: 'createShipment', component:NewShipmentComponent},
   {path: 'createBatchShipment', component:BulkUploadComponent},
   {path: 'shipmentList', component:ShipmentListComponent},
