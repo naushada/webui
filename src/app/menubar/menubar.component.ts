@@ -29,7 +29,7 @@ export class MenubarComponent implements OnInit, OnDestroy {
     this.mShowMenubar = true;
     this.mShowNavbar = false;
 
-    this.subs = this.pubsub.onAccount.subscribe((acct: Account) => {this.userName = acct.name;});
+    this.subs = this.pubsub.onAccount.subscribe((acct: Account) => {if(acct.name.length > 0) {this.userName = acct.name;}});
 
   }
 
@@ -78,8 +78,11 @@ export class MenubarComponent implements OnInit, OnDestroy {
 
   public onLogout() : void {
     this.showMenubar = false;
-    this.showNavbar = true;
-    this.rt.navigate(['/login']);
+    this.showNavbar = false;
+    //this.rt.navigate(['/login']);
+    let acc: Account = new Account();
+    acc.name = "";
+    this.pubsub.emit_accountInfo(acc);
   }
 
   public canItBeDisplayed(menuItem: string) : boolean {

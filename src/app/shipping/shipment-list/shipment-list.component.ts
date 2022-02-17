@@ -93,6 +93,9 @@ export class ShipmentListComponent implements AfterViewInit {
           this.dataSource.data.push(item);
           cnt += 1;
         });
+
+        this.shipmentListForm.value.startDate = "";
+        this.shipmentListForm.value.endDate = "";
       }
     );
   }

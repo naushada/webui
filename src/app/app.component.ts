@@ -16,7 +16,13 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor(private pubsub: PubsubService) {
     this.mIsLoggedIn = false;
-    this.sub = this.pubsub.onAccount.subscribe((acc: Account) => {if(acc.name.length > 0) { this.mIsLoggedIn = true;}});
+    this.sub = this.pubsub.onAccount.subscribe(
+      (acc: Account) => {
+        if(acc.name.length > 0) { this.isUserLoggedIn = true;
+        } else {
+          this.isUserLoggedIn = false;
+        }
+      });
     
   }
 
