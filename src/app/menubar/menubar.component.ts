@@ -18,15 +18,15 @@ export class MenubarComponent implements OnInit, OnDestroy {
   private mUserName: string;
   private mIsDashboard: boolean;
   private mLogout: boolean;
-  
   private subs: Subscription;
-
+  private mMenuItem: string;
   constructor(private rt: Router, private pubsub: PubsubService) { 
 
     this.mMenuSelected = "";
     this.mUserName = "";
     this.mIsDashboard = true;
     this.mLogout = false;
+    this.mMenuItem = "";
 
     this.subs = this.pubsub.onAccount.subscribe((acct: Account) => {this.userName = acct.name;});
 
@@ -41,7 +41,7 @@ export class MenubarComponent implements OnInit, OnDestroy {
 
   public onMenuSelect(item: string) : void {
     this.mMenuSelected = item;
-
+        
     if(item == 'dashboard') {
       this.isDashboard = true;
       this.rt.navigate(['/dashboard'])
@@ -103,6 +103,22 @@ export class MenubarComponent implements OnInit, OnDestroy {
 
   public set isLogout(item: boolean) {
     this.mLogout = item;
+  }
+
+  get menuSelected(): string {
+    return(this.mMenuSelected);
+  }
+
+  set menuSelected(item: string) {
+    this.mMenuSelected = item;
+  }
+
+  set menuItem(item: string) {
+    this.mMenuItem = item;
+  }
+
+  get menuItem(): string {
+    return(this.mMenuItem);
   }
 
   ngOnDestroy(): void {

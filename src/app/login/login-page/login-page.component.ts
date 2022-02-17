@@ -26,7 +26,6 @@ export class LoginPageComponent {
   onLogin(): void {
 
     this.isBtnDisabled = true;
-    alert('Thanks!' + this.loginForm.get('id')?.value + this.loginForm.get('password')?.value);
     let id:string = this.loginForm.value.id;
     let pwd:string = this.loginForm.value.password;
     

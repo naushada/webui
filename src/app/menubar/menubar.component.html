@@ -80,7 +80,14 @@
 </ng-container>
 
     </mat-sidenav>
-    <mat-sidenav-content>content goes here ...
+    <mat-sidenav-content>
+        <div>
+            <span>{{menuSelected}}</span>
+            <span *ngIf="menuItem.length > 0">
+                <mat-icon>double_arrow</mat-icon>
+                <span>{{menuItem}}</span>
+            </span>
+        </div>
         <router-outlet></router-outlet>
     </mat-sidenav-content>
     

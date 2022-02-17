@@ -26,7 +26,8 @@ export class ShipmentListComponent implements AfterViewInit {
   awbList!: ShipmentList;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['select', 'serialNo', 'shipmentNo', 'altRefNo', 'senderRefNo', 'createdBy', 'createdOn', 'service', 'receipent', 'location', 'country'];
+  displayedColumns = ['select', 'serialNo', 'shipmentNo', 'altRefNo', 'senderRefNo', 'createdBy', 
+                      'createdOn', 'service', 'receipent', 'location', 'country'];
 
   constructor(private fb:FormBuilder, private rest: RestApiService) {
     this.dataSource = new ShipmentListDataSource();
@@ -67,13 +68,12 @@ export class ShipmentListComponent implements AfterViewInit {
     
     let fromDate = formatDate(this.shipmentListForm.value.startDate, 'dd/MM/yyyy', 'en');
     let toDate = formatDate(this.shipmentListForm.value.endDate, 'dd/MM/yyyy', 'en');
-    alert("StartDate " + fromDate + " endDate " + toDate);
-
+    
     this.rest.getShipmentList(fromDate, toDate).subscribe(
       (sh: Shipment[]) => { this.awbList = new ShipmentList(sh, sh.length);},
 
       /** onError */
-      (error:any) => {alert("Error is encountered for getting shipment list");},
+      (error:any) => {},
 
       /** onComplete */
       () => {
