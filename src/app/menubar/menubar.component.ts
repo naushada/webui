@@ -22,7 +22,7 @@ export class MenubarComponent implements OnInit, OnDestroy {
   private mMenuItem: string;
   constructor(private rt: Router, private pubsub: PubsubService) { 
 
-    this.mMenuSelected = "";
+    this.mMenuSelected = "dashboard";
     this.mUserName = "";
     this.mIsDashboard = true;
     this.mLogin = false;
@@ -36,7 +36,9 @@ export class MenubarComponent implements OnInit, OnDestroy {
    * pubic method
    */
   ngOnInit(): void {
-    this.onMenuSelect('dashboard');
+    //this.onMenuSelect('dashboard');
+    this.isLogin = true;
+    this.isDashboard = true;
   }
 
   public onMenuSelect(item: string) : void {
@@ -47,7 +49,7 @@ export class MenubarComponent implements OnInit, OnDestroy {
       this.rt.navigate(['/dashboard'])
     } else {
       this.isDashboard = false;
-      this.rt.navigate(['/'])
+      //this.rt.navigate(['/webui'])
     }
   }
 
