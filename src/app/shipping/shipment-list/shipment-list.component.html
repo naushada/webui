@@ -1,21 +1,29 @@
 <div>
+
   <form [formGroup]="shipmentListForm" novalidate (ngSubmit)="onGetShipmentList()">
-    <mat-form-field class="full-width" >
-      <input matInput type="date" placeholder="Start Date" formControlName="startDate">
-      <mat-error *ngIf="shipmentListForm.controls['startDate'].hasError('required')">
-        Start Date is <strong>required</strong>
-      </mat-error>
-    </mat-form-field>
-    
-    <mat-form-field class="full-width">
-      <input matInput type="date" placeholder="End Date" formControlName="endDate">
-      <mat-error *ngIf="shipmentListForm.controls['endDate'].hasError('required')">
-        End Date is <strong>required</strong>
-      </mat-error>
-    </mat-form-field>
-    <div>
+    <mat-grid-list cols="6" rowHeight="70px" gutterSize="1px">
+      <mat-grid-tile >
+        <mat-form-field class="full-width" >
+          <input matInput type="date" placeholder="Start Date" formControlName="startDate">
+          <mat-error *ngIf="shipmentListForm.controls['startDate'].hasError('required')">
+            Start Date is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+      <mat-form-field class="full-width">
+        <input matInput type="date" placeholder="End Date" formControlName="endDate">
+        <mat-error *ngIf="shipmentListForm.controls['endDate'].hasError('required')">
+          End Date is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </mat-grid-tile>
+    </mat-grid-list>
+
+    <div class="full-width ml-10">
       <button mat-raised-button color="primary" type="submit">Submit</button>
     </div>
+
   </form>
 </div>
 

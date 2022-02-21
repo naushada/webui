@@ -15,7 +15,7 @@
     </div>
     <span class="example-spacer"></span>
 
-    <button mat-button [matMenuTriggerFor]="menu" class="font-sz18">{{userName}}<mat-icon>account_circle</mat-icon></button>
+    <button mat-button [matMenuTriggerFor]="menu" class="font-sz20">{{userName}}<mat-icon>account_circle</mat-icon></button>
     <mat-menu #menu="matMenu">
         <button mat-menu-item (click)="onProfile()"><mat-icon>info</mat-icon> Profile</button>
         <button mat-menu-item (click)="onLogout()"><mat-icon>logout</mat-icon> Logout</button>
@@ -83,7 +83,7 @@
     </mat-sidenav>
     <mat-sidenav-content>
         
-        <div>
+        <div class="ml-10 capitalize">
             <span>{{menuSelected}}</span>
             <span *ngIf="menuItem.length > 0">
                 <mat-icon>double_arrow</mat-icon>

@@ -18,7 +18,7 @@ export interface ShipmentListItem {
   country: string;
 }
 
-const SHIPMENT_DATA: ShipmentListItem[] = [];
+let SHIPMENT_DATA: ShipmentListItem[] = [];
 
 /**
  * Data source for the ShipmentList view. This class should
@@ -32,6 +32,7 @@ export class ShipmentListDataSource extends DataSource<ShipmentListItem> {
 
   constructor() {
     super();
+
   }
 
   /**

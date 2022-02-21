@@ -36,5 +36,19 @@ export class PubsubService {
     this.shipmentInst = sh;
   }
 
+    /** Selected Navbar Element */
+   
+    private chosenItem: string = "";
+    private chosenItembs$ = new  BehaviorSubject(this.chosenItem);
+  
+    /** onAccount will be used to subscribe for AccountInfo of logged in user */
+    public onItemSelect = this.chosenItembs$.asObservable();
+  
+    /** This will be used to publish account info to subscriber */
+    public emit_chosenItem(sh: string) {
+      this.chosenItembs$.next(sh);
+      this.chosenItem = sh;
+    }
+
 }
 

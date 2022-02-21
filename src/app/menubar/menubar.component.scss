@@ -26,7 +26,23 @@
     width: 250px;
   }
 
-  .font-sz18 {
+  .font-sz20 {
     font-size: 20px;
+  }
+
+  .ml-10 {
+    margin-left: 10px;
+  }
+
+  .m {
+    margin: 10px;
+  }
+  
+  .capitalize {
+    display: inline-block;  
+  }
+  
+  .capitalize::first-letter {
+    text-transform: uppercase;
   }
   
