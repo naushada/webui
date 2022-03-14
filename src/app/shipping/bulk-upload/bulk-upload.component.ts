@@ -102,7 +102,7 @@ export class BulkUploadComponent implements OnInit {
 
           /** Receiver Information */
           receiverName: from.receiverName,
-          receiverCountry: from.receiverCountry,
+          receiverCountry: from.receiverCountry && from.receiverCountry || "Saudi Arabia",
           receiverAddress: from.receiverAddress,
           receiverCity: from.receiverCity,
           receiverState: from.receiverState,

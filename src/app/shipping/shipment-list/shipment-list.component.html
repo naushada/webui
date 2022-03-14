@@ -1,27 +1,27 @@
-<div>
+<div class="container">
 
   <form [formGroup]="shipmentListForm" novalidate (ngSubmit)="onGetShipmentList()">
-    <mat-grid-list cols="6" rowHeight="70px" gutterSize="1px">
-      <mat-grid-tile >
+    <!--<mat-grid-list cols="6" rowHeight="70px" gutterSize="1px">-->
+    <!--- <mat-grid-tile >-->
         <mat-form-field class="full-width" >
           <input matInput type="date" placeholder="Start Date" formControlName="startDate">
           <mat-error *ngIf="shipmentListForm.controls['startDate'].hasError('required')">
             Start Date is <strong>required</strong>
           </mat-error>
         </mat-form-field>
-      </mat-grid-tile>
-      <mat-grid-tile>
-      <mat-form-field class="full-width">
+      <!--</mat-grid-tile>-->
+     <!-- <mat-grid-tile>-->
+      <mat-form-field class="full-width ml-20">
         <input matInput type="date" placeholder="End Date" formControlName="endDate">
         <mat-error *ngIf="shipmentListForm.controls['endDate'].hasError('required')">
           End Date is <strong>required</strong>
         </mat-error>
       </mat-form-field>
-    </mat-grid-tile>
-    </mat-grid-list>
+   <!-- </mat-grid-tile>-->
+  <!--  </mat-grid-list>-->
 
-    <div class="full-width ml-10">
-      <button mat-raised-button color="primary" type="submit">Submit</button>
+    <div class="full-width">
+      <button mat-raised-button color="primary" type="submit" [disabled]="isBtnDisabled">Submit</button>
     </div>
 
   </form>
@@ -66,7 +66,7 @@
 
     <!-- AltRefNo Column -->
     <ng-container matColumnDef="altRefNo">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>ALT REF No.</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Alt. Ref. No.</th>
       <td mat-cell *matCellDef="let row">{{row.altRefNo}}</td>
     </ng-container>
 

@@ -20,12 +20,95 @@ export class RestApiService {
 
   constructor(private http: HttpClient) { }
 
-  getShipmentList(fromDate:string, toDate:string): Observable<Shipment[]> {
+  getShipmentByAwbNo(awb: string, accountCode?: string): Observable<Shipment> {
+    let param = `shipmentNo=${awb}`;
+
+    if(accountCode != undefined) {
+      param += `&accountCode=${accountCode}`
+    }
+
+    const options = {params: new HttpParams({fromString: param})};
+
+    let uri: string = this.apiURL + '/api/awbno';
+    return this.http.get<Shipment>(uri, options)
+  }
+
+  getShipmentByAltRefNo(altRefNo: string, accountCode?: string): Observable<Shipment> {
+    let param = `altRefNo=${altRefNo}`;
+
+    if(accountCode != undefined) {
+      param += `&accountCode=${accountCode}`
+    }
+    
+    const options = {params: new HttpParams({fromString: param})};
+
+    let uri: string = this.apiURL + '/api/altrefno';
+    return this.http.get<Shipment>(uri, options)
+  }
+
+  getShipmentBySenderRefNo(senderRefNo: string, accountCode?: string): Observable<Shipment> {
+    let param = `senderRefNo=${senderRefNo}`;
+
+    if(accountCode != undefined) {
+      param += `&accountCode=${accountCode}`
+    }
+    
+    const options = {params: new HttpParams({fromString: param})};
+
+    let uri: string = this.apiURL + '/api/senderrefno';
+    return this.http.get<Shipment>(uri, options)
+  }
+
+  getShipments(fromDate:string, toDate:string, accountCode?: string): Observable<Shipment[]> {
     let param = `fromDate=${fromDate}&toDate=${toDate}`;
+
+    if(accountCode != undefined) {
+      param += `&accountCode=${accountCode}`
+    }
 
     const options = {params: new HttpParams({fromString: param})};
 
     let uri: string = this.apiURL + '/api/shipmentlist';
+    return this.http.get<Shipment[]>(uri, options)
+  }
+
+
+  getShipmentsByAwbNo(awb: Array<string>, accountCode?: string): Observable<Shipment[]> {
+    let param = `awbNo=${awb}`;
+
+    if(accountCode != undefined) {
+      param += `&accountCode=${accountCode}`
+    }
+
+    const options = {params: new HttpParams({fromString: param})};
+
+    let uri: string = this.apiURL + '/api/awbnolist';
+    return this.http.get<Shipment[]>(uri, options)
+  }
+
+  getShipmentsByAltRefNo(altRefNo: Array<string>, accountCode?: string): Observable<Shipment[]> {
+    let param = `awbNo=${altRefNo}`;
+
+    if(accountCode != undefined) {
+      param += `&accountCode=${accountCode}`
+    }
+    
+    const options = {params: new HttpParams({fromString: param})};
+
+    let uri: string = this.apiURL + '/api/altrefnolist';
+    return this.http.get<Shipment[]>(uri, options)
+  }
+
+  getShipmentsBySenderRefNo(senderRefNo: Array<string>, accountCode?: string): Observable<Shipment[]> {
+    let param = `awbNo=${senderRefNo}`;
+
+    if(accountCode != undefined) {
+      param += `&accountCode=${accountCode}`
+    }
+    
+    const options = {params: new HttpParams({fromString: param})};
+
+    let uri: string = this.apiURL + '/api/senderrefnolist';
     return this.http.get<Shipment[]>(uri, options)
   }
 

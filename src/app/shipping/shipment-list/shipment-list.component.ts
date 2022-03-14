@@ -24,12 +24,14 @@ export class ShipmentListComponent implements AfterViewInit {
 
   shipmentListForm!: FormGroup;
   awbList!: ShipmentList;
+  private mIsBtnDisabled: boolean;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['select', 'serialNo', 'shipmentNo', 'altRefNo', 'senderRefNo', 'createdBy', 
                       'createdOn', 'service', 'receipent', 'location', 'country'];
 
   constructor(private fb:FormBuilder, private rest: RestApiService) {
+    this.mIsBtnDisabled = false;
     this.dataSource = new ShipmentListDataSource();
 
     this.shipmentListForm = this.fb.group({
@@ -66,38 +68,51 @@ export class ShipmentListComponent implements AfterViewInit {
   }
 
   public onGetShipmentList(): void {
-    
+   
+    //this.isBtnDisabled = true; 
     let fromDate = formatDate(this.shipmentListForm.value.startDate, 'dd/MM/yyyy', 'en');
     let toDate = formatDate(this.shipmentListForm.value.endDate, 'dd/MM/yyyy', 'en');
     
-    this.rest.getShipmentList(fromDate, toDate).subscribe(
-      (sh: Shipment[]) => { this.awbList = new ShipmentList(sh, sh.length);},
+    this.rest.getShipments(fromDate, toDate).subscribe(
+      (sh: Shipment[]) => { 
+	      this.awbList = new ShipmentList(sh, sh.length);
+	      let cnt: number = 1;
+        this.awbList.m_shipmentArray.forEach((element: Shipment) => {
+            let item:ShipmentListItem = { 'serialNo': cnt, 
+                	                        'shipmentNo': element.shipmentNo,
+                        	                'altRefNo': element.altRefNo,
+                                          'senderRefNo': element.referenceNo,
+                                          'createdBy':element.createdBy,
+                                          'createdOn': element.createdOn,
+                                          'service': element.service,
+                                          'receipent': element.receiverName,
+                                          'location': element.receiverCity,
+                                          'country': element.receiverCountry
+                                        };
+       	    this.dataSource.data.push(item);
+       	    cnt += 1;
+        });
+      },
 
       /** onError */
-      (error:any) => {this.dataSource.data.length = 0; alert("No Shipment Found")},
+      (error:any) => {this.dataSource.data.length = 0; this.isBtnDisabled = false;console.log("Error " + error);},
 
       /** onComplete */
       () => {
-        let cnt: number = 1;
-        this.awbList.m_shipmentArray.forEach((element: Shipment) => {
-          let item:ShipmentListItem = {'serialNo': cnt, 
-                                       'shipmentNo': element.shipmentNo,
-                                       'altRefNo': element.altRefNo,
-                                       'senderRefNo': element.referenceNo,
-                                       'createdBy':element.createdBy,
-                                       'createdOn': element.createdOn,
-                                       'service': element.service,
-                                       'receipent': element.receiverName,
-                                       'location': element.receiverCity,
-                                       'country': element.receiverCountry
-                                      };
-          this.dataSource.data.push(item);
-          cnt += 1;
-        });
-
+        console.log("Error ");
+	      this.isBtnDisabled = false;
+	      //this.dataSource.connect();
         this.shipmentListForm.value.startDate = "";
         this.shipmentListForm.value.endDate = "";
       }
     );
+  }
+
+  get isBtnDisabled(): boolean {
+    return(this.mIsBtnDisabled);
+  }
+
+  set isBtnDisabled(st: boolean) {
+    this.mIsBtnDisabled = st;
   }
 }

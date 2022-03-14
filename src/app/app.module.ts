@@ -47,6 +47,9 @@ import { MenubarComponent } from './menubar/menubar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxMatFileInputModule } from '@angular-material-components/file-input';
 
+import { ClarityModule } from "@clr/angular";
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -95,7 +98,8 @@ import { NgxMatFileInputModule } from '@angular-material-components/file-input';
     MatRadioModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatInputModule
+    MatInputModule,
+    ClarityModule
     
   ],
   providers: [],

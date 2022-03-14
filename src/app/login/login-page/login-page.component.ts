@@ -28,11 +28,6 @@ export class LoginPageComponent {
     let id:string = this.loginForm.value.id;
     let pwd:string = this.loginForm.value.password;
     
-    let ac: Account = new Account();
-    ac.name= "Mohammed Naushad Ahmed";
-    this.on.emit_accountInfo(ac);
-    return;
-
     this.rest.getAccountInfo(id, pwd).subscribe(
       /** onResponse */
       (acc: Account) => {
