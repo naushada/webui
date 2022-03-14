@@ -46,6 +46,7 @@ export class SingleAwbComponent implements OnInit, OnDestroy {
 
   onSingleAwb() {
 
+    this.isBtnDisabled = true;
     let awbNo = this.singleAwbForm.value.awbNo;
     let sndRefNo = this.singleAwbForm.value.senderRefNo;
 
@@ -58,9 +59,12 @@ export class SingleAwbComponent implements OnInit, OnDestroy {
                               (rsp : Shipment) => {
                                 this.shipmentInfo = new Shipment(rsp);
                                 this.displayResult = true;
+                                this.isBtnDisabled = false;
+                                this.singleAwbForm.get('awbNo')?.setValue("");
                               },
                               error => {
                                 alert("Invalid AWB Number " + awbNo);
+                                this.isBtnDisabled = false;
                               },
                               /**Operation is executed successfully */
                               () => {});
@@ -70,9 +74,12 @@ export class SingleAwbComponent implements OnInit, OnDestroy {
                               (rsp : Shipment) => {
                                 this.shipmentInfo = new Shipment(rsp);
                                 this.displayResult = true;
+                                this.isBtnDisabled = false;
+                                this.singleAwbForm.get('awbNo')?.setValue("");
                               },
                               error => {
                                 alert("Invalid ALT REF NO Number " + awbNo);
+                                this.isBtnDisabled = false;
                               },
                               /**Operation is executed successfully */
                               () => {});
@@ -83,9 +90,13 @@ export class SingleAwbComponent implements OnInit, OnDestroy {
           {
               this.shipmentInfo = new Shipment(rsp);
               this.displayResult = true;
+              this.isBtnDisabled = false;
+              this.singleAwbForm.get('senderRefNo')?.setValue("");
 
           },
-          (error) => {},
+          (error) => {
+              this.isBtnDisabled = false;
+          },
           () => {});
       }
     } else {
@@ -97,9 +108,12 @@ export class SingleAwbComponent implements OnInit, OnDestroy {
                               (rsp : Shipment) => {
                                 this.shipmentInfo = new Shipment(rsp);
                                 this.displayResult = true;
+                                this.isBtnDisabled = false;
+                                this.singleAwbForm.get('awbNo')?.setValue("");
                               },
                               error => {
                                 alert("Invalid Shipment Number " + awbNo);
+                                this.isBtnDisabled = false;
                               },
                               /**Operation is executed successfully */
                               () => {});
@@ -109,9 +123,12 @@ export class SingleAwbComponent implements OnInit, OnDestroy {
                               (rsp : Shipment) => {
                                 this.shipmentInfo = new Shipment(rsp);
                                 this.displayResult = true;
+                                this.isBtnDisabled = false;
+                                this.singleAwbForm.get('awbNo')?.setValue("");
                               },
                               error => {
                                 alert("Invalid ALT REF NO Number " + awbNo);
+                                this.isBtnDisabled = false;
                               },
                               /**Operation is executed successfully */
                               () => {});
@@ -121,9 +138,12 @@ export class SingleAwbComponent implements OnInit, OnDestroy {
                               (rsp : Shipment) => {
                                 this.shipmentInfo = new Shipment(rsp);
                                 this.displayResult = true;
+                                this.isBtnDisabled = false;
+                                this.singleAwbForm.get('senderRefNo')?.setValue("");
                               },
                               error => {
                                 alert("Invalid ALT REF NO Number " + awbNo);
+                                this.isBtnDisabled = false;
                               },
                               /**Operation is executed successfully */
                               () => {});
@@ -148,7 +168,7 @@ export class SingleAwbComponent implements OnInit, OnDestroy {
       return ClrTimelineStepState.CURRENT;
     } else if(arg == "processing") {
       return ClrTimelineStepState.PROCESSING;
-    } else if(arg == "Proof of Delivery") {
+    } else if(arg == "Proof of Delivery" || arg == "Shipment Returned to Sender") {
       return ClrTimelineStepState.SUCCESS;
     } else if(arg == "error") {
       return ClrTimelineStepState.ERROR;

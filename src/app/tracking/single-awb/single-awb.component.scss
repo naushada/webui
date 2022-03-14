@@ -44,11 +44,22 @@
 .gridbox {
   //margin: "5px";
   display: grid;
-  gird-gap: "5px";
+  //gird-gap: "5px";
   width: 100%;
   height: 100%;
 }
 
-mat-label {
-  margin-right: 20px;
+.width50 {
+  width: 50%;
 }
+
+.width25 {
+  width: 25%;
+}
+
+.width100 {
+  width: 100%;
+}
+
+
+

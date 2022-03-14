@@ -1,17 +1,13 @@
 <div class="container">
   <form [formGroup]="singleAwbForm" novalidate (ngSubmit)="onSingleAwb()">
-  <!--<mat-grid-list cols="6" rowHeight="70px" gutterSize="1px">-->
-  <!--- <mat-grid-tile >-->
+  
   <mat-form-field class="full-width">
     <input matInput type="text" placeholder="AWB No or Alt. Ref. No" formControlName="awbNo">
   </mat-form-field>
-  <!--</mat-grid-tile>-->
-  <!-- <mat-grid-tile>-->
-  <mat-form-field class="full-width ml-20">
+   <mat-form-field class="full-width ml-20">
     <input matInput type="text" placeholder="Sender Reference No." formControlName="senderRefNo">
   </mat-form-field>
-  <!-- </mat-grid-tile>-->
-  <!--  </mat-grid-list>-->
+ 
   <div class="full-width">
     <button mat-raised-button color="primary" type="submit" [disabled]="isBtnDisabled">Submit</button>
   </div>
@@ -20,24 +16,24 @@
 
 <ng-container *ngIf="displayResult== true"> 
   <div class="container"> 
-    <mat-grid-list cols="4" rowHeight="2:1">
+    <mat-grid-list cols="5" rowHeight="1:1">
       <mat-grid-tile [colspan]="1" [rowspan]="1">
         <div class="gridbox mat-elevation-z8"> 
           <mat-card>
-            <mat-card-title>Sender Information</mat-card-title>
             <mat-card-content>
-              <div><b><mat-label>Connote#     :</mat-label></b>{{shipmentInfo.shipmentNo}}</div>
-              <div><b><mat-label>Alt. Ref. No.:</mat-label></b>{{shipmentInfo.altRefNo}}</div>
-              <div><b><mat-label>Service Type :</mat-label></b>{{shipmentInfo.service}}</div>
-              <div><b><mat-label>Shipped On   :</mat-label></b>{{shipmentInfo.activity[shipmentInfo.activity.length-1].date}} {{shipmentInfo.activity[ shipmentInfo.activity.length-1].time}} {{shipmentInfo.city}} - {{ shipmentInfo.country}}</div>
-              <div><b><mat-label>Destination  :</mat-label> </b>{{shipmentInfo.receiverCity}} - {{shipmentInfo.receiverCountry}}</div>
-              <div><b><mat-label>Status       :</mat-label></b>{{shipmentInfo.activity[0].event}}</div>
+              <div><b><mat-label>Connote#     :</mat-label></b> {{shipmentInfo.shipmentNo}}</div>
+              <div><b><mat-label>Alt. Ref. No.:</mat-label></b> {{shipmentInfo.altRefNo}}</div>
+              <div><b><mat-label>Service Type :</mat-label></b> {{shipmentInfo.service}}</div>
+              <div><b><mat-label>Shipped On   :</mat-label></b> {{shipmentInfo.activity[shipmentInfo.activity.length-1].date}} {{shipmentInfo.activity[ shipmentInfo.activity.length-1].time}} {{shipmentInfo.city}} - {{ shipmentInfo.country}}</div>
+              <div><b><mat-label>Destination  :</mat-label></b> {{shipmentInfo.receiverCity}} - {{shipmentInfo.receiverCountry}}</div>
+              <div><b><mat-label>Status       :</mat-label></b> {{shipmentInfo.activity[0].event}}</div>
               <div><b><mat-label>Job #        :</mat-label></b></div>
             </mat-card-content>
           </mat-card>
         </div>
       </mat-grid-tile>
-      <mat-grid-tile [colspan]="3" [rowspan]="1">
+      
+      <mat-grid-tile [colspan]="4" [rowspan]="1">
             <div class="gridbox mat-elevation-z8">
                 <mat-card>
                     <mat-card-title>
@@ -46,43 +42,11 @@
                       <clr-timeline>
 
                         <clr-timeline-step *ngFor="let st of shipmentInfo.activity" [clrState]="currentState(st.event)">
-                          <clr-timeline-step-header>{{st.time}}</clr-timeline-step-header>
+                          <clr-timeline-step-header>{{st.date}}:{{st.time}}</clr-timeline-step-header>
                           <clr-timeline-step-title>{{st.event}}</clr-timeline-step-title>
                           <clr-timeline-step-description>{{st.notes}}</clr-timeline-step-description>
                         </clr-timeline-step>
-                        <!--
-                        <clr-timeline-step [clrState]="currentState('notStarted')">
-                          <clr-timeline-step-header>11:59 am</clr-timeline-step-header>
-                          <clr-timeline-step-title>Add KMS</clr-timeline-step-title>
-                          <clr-timeline-step-description>Root CA certificate requested.</clr-timeline-step-description>
-                        </clr-timeline-step>
-                      <clr-timeline-step [clrState]="currentState('current')">
-                        <clr-timeline-step-header>11:59 am</clr-timeline-step-header>
-                        <clr-timeline-step-title>Add KMS</clr-timeline-step-title>
-                        <clr-timeline-step-description>Root CA certificate requested. Upload it to the KMS to complete the connection.<button class="btn btn-sm">Action</button>
-                        </clr-timeline-step-description>
-                      </clr-timeline-step>
-                      <clr-timeline-step class="gemini-ignore" [clrState]="currentState('processing')">
-                        <clr-timeline-step-header>11:59 am</clr-timeline-step-header>
-                        <clr-timeline-step-title>Make vCenter trust KMS</clr-timeline-step-title>
-                        <clr-timeline-step-description>
-                            Root CA certificate requested. Upload it to the KMS to complete the connection. Third sentence is very long
-                              and very long.
-                        </clr-timeline-step-description>
-                      </clr-timeline-step>
-                      <clr-timeline-step [clrState]="currentState('success')">
-                        <clr-timeline-step-header>11:59 am</clr-timeline-step-header>
-                        <clr-timeline-step-title>Make KMS trust vCenter</clr-timeline-step-title>
-                        <clr-timeline-step-description>Upload it to the KMS to complete the connection. Third
-                          sentence.
-                          <button class="btn btn-sm btn-link">Action</button>
-                        </clr-timeline-step-description>
-                      </clr-timeline-step>
-                      <clr-timeline-step [clrState]="currentState('error')">
-                        <clr-timeline-step-header>11:59 am</clr-timeline-step-header>
-                        <clr-timeline-step-title>Connected</clr-timeline-step-title>
-                        <clr-timeline-step-description>No. It's not connected.</clr-timeline-step-description>
-                      </clr-timeline-step> -->
+                        
                     </clr-timeline>
                   </mat-card-content>
                 </mat-card>
@@ -93,8 +57,8 @@
   </ng-container>
 
   <ng-container *ngIf= "displayResult == true"> 
-  <div class="container mat-elevation-z8">
-    <table mat-table class="full-width-table" aria-label="Elements">
+  <div class="container">
+    <table mat-table class="full-width-table" aria-label="Elements" [dataSource]="shipmentInfo.activity.reverse()">
       
       <!-- Date Column -->
       <ng-container matColumnDef="date">
@@ -111,13 +75,13 @@
       <!-- Location Column -->
       <ng-container matColumnDef="location">
         <th mat-header-cell *matHeaderCellDef >Location</th>
-        <td mat-cell *matCellDef="let row">{{row.location}}</td>
+        <td mat-cell *matCellDef="let row">{{row.eventLocation}}</td>
       </ng-container>
   
       <!-- Activity Column -->
       <ng-container matColumnDef="activity">
         <th mat-header-cell *matHeaderCellDef >Activity</th>
-        <td mat-cell *matCellDef="let row">{{row.activity}}</td>
+        <td mat-cell *matCellDef="let row">{{row.event}}</td>
       </ng-container>
   
       <!-- Notes Column -->
@@ -129,7 +93,7 @@
       <!-- Entered By Column -->
       <ng-container matColumnDef="enteredBy">
         <th mat-header-cell *matHeaderCellDef >Entered By</th>
-        <td mat-cell *matCellDef="let row">{{row.enteredBy}}</td>
+        <td mat-cell *matCellDef="let row">{{row.updatedBy}}</td>
       </ng-container>
   
       <!-- Received(UTC) Column -->
@@ -152,23 +116,23 @@
  
   <ng-container *ngIf="displayResult == true">
       <div class="container"> 
-      <mat-grid-list cols="2" rowHeight="320px">
+      <mat-grid-list cols="4" rowHeight="320px">
           <mat-grid-tile [colspan]="1" [rowspan]="1">
             <div class="gridbox mat-elevation-z8"> 
                 <mat-card>
                     <mat-card-title>
-                        Sender Information
+                      <u><b>Sender Information</b></u>
                     </mat-card-title>
                     <mat-card-content>
-                      <div><mat-label>Name</mat-label></div>
-                      <div><mat-label>Company Name</mat-label></div>
-                      <div><mat-label>Address</mat-label></div>
-                      <div><mat-label>City</mat-label></div>
-                      <div><mat-label>Country</mat-label></div>
-                      <div><mat-label>Contact</mat-label></div>
-                      <div><mat-label>Sender Reference No.</mat-label></div>
-                      <div><mat-label>Account Code</mat-label></div>
-                      <div><mat-label>Phone</mat-label></div>
+                      <div><mat-label><b>Name:</b></mat-label>{{shipmentInfo.name}}</div>
+                      <div><mat-label><b>Company Name:</b></mat-label>{{shipmentInfo.companyName}}</div>
+                      <div><mat-label><b>Address:</b></mat-label>{{shipmentInfo.address}}</div>
+                      <div><mat-label><b>City:</b></mat-label>{{shipmentInfo.city}}</div>
+                      <div><mat-label><b>Country:</b></mat-label>{{shipmentInfo.country}}</div>
+                      <div><mat-label><b>Contact:</b></mat-label>{{shipmentInfo.contact}}</div>
+                      <div><mat-label><b>Sender Reference No.:</b></mat-label> {{shipmentInfo.referenceNo}}</div>
+                      <div><mat-label><b>Account Code:</b></mat-label>{{shipmentInfo.accountCode}}</div>
+                      <div><mat-label><b>Phone:</b></mat-label>{{shipmentInfo.phone}}</div>
                     </mat-card-content>
                 </mat-card>
             </div>
@@ -178,17 +142,17 @@
             <div class="gridbox mat-elevation-z8">
                 <mat-card>
                     <mat-card-title>
-                        Receiver Information
+                      <u><b>Receiver Information</b></u>
                     </mat-card-title>
                     <mat-card-content>
-                      <div><mat-label>Name</mat-label></div>
-                      <div><mat-label>Address</mat-label></div>
-                      <div><mat-label>Contact No.</mat-label></div>
-                      <div><mat-label>Phone</mat-label></div>
-                      <div><mat-label>City</mat-label></div>
-                      <div><mat-label>State</mat-label></div>
-                      <div><mat-label>Country</mat-label></div>
-                      <div><mat-label>Email</mat-label></div>
+                      <div><mat-label><b>Name:</b></mat-label>{{shipmentInfo.receiverName}}</div>
+                      <div><mat-label><b>Address:</b></mat-label>{{shipmentInfo.receiverAddress}}</div>
+                      <div><mat-label><b>Contact No.:</b></mat-label>{{shipmentInfo.receiverContact}}</div>
+                      <div><mat-label><b>Phone:</b></mat-label>{{shipmentInfo.receiverPhone}}</div>
+                      <div><mat-label><b>City:</b></mat-label>{{shipmentInfo.receiverCity}}</div>
+                      <div><mat-label><b>State:</b></mat-label>{{shipmentInfo.receiverState}}</div>
+                      <div><mat-label><b>Country:</b></mat-label>{{shipmentInfo.receiverCountry}}</div>
+                      <div><mat-label><b>Email:</b></mat-label>{{shipmentInfo.receiverEmail}}</div>
                     </mat-card-content>
                 </mat-card>
             </div>
@@ -198,20 +162,20 @@
             <div class="gridbox mat-elevation-z8">
                 <mat-card>
                     <mat-card-title>
-                        Shipment Information
+                      <u><b>Shipment Information</b></u>
                     </mat-card-title>
                     <mat-card-content>
-                      <div><mat-label>SKU</mat-label></div>
-                      <div><mat-label>Service Type</mat-label></div>
-                      <div><mat-label>Number Of Items</mat-label></div>
-                      <div><mat-label>Goods Description</mat-label></div>
-                      <div><mat-label>Goods Value</mat-label></div>
-                      <div><mat-label>Customs Value</mat-label></div>
-                      <div><mat-label>Weight</mat-label></div>
-                      <div><mat-label>Weight Unit</mat-label></div>
-                      <div><mat-label>Cubic Weight</mat-label></div>
-                      <div><mat-label>COD Amount</mat-label></div>
-                      <div><mat-label>Currency</mat-label></div>
+                      <div><mat-label><b>SKU:</b></mat-label><mat-label>{{shipmentInfo.sku}}</mat-label></div>
+                      <div><mat-label><b>Service Type:</b></mat-label><mat-label>{{shipmentInfo.service}}</mat-label></div>
+                      <div><mat-label><b>Number Of Items:</b></mat-label><mat-label>{{shipmentInfo.noOfItems}}</mat-label></div>
+                      <div><mat-label><b>Goods Description:</b></mat-label><mat-label>{{shipmentInfo.description}}</mat-label></div>
+                      <div><mat-label><b>Goods Value:</b></mat-label><mat-label>{{shipmentInfo.goodsValue}}</mat-label></div>
+                      <div><mat-label><b>Customs Value:</b></mat-label><mat-label>{{shipmentInfo.customValue}}</mat-label></div>
+                      <div><mat-label><b>Weight:</b></mat-label><mat-label>{{shipmentInfo.weight}}</mat-label></div>
+                      <div><mat-label><b>Weight Unit:</b></mat-label><mat-label>{{shipmentInfo.weightUnit}}</mat-label></div>
+                      <div><mat-label><b>Cubic Weight:</b></mat-label><mat-label>{{shipmentInfo.cubicWeight}}</mat-label></div>
+                      <div><mat-label><b>COD Amount:</b></mat-label><mat-label>{{shipmentInfo.codAmount}}</mat-label></div>
+                      <div><mat-label><b>Currency:</b></mat-label><mat-label>{{shipmentInfo.currency}}</mat-label></div>
                     </mat-card-content>
                 </mat-card>
             </div>
