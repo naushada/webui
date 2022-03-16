@@ -1,1 +1,75 @@
-<p>multiple-awb works!</p>
+<div class="container">
+<form [formGroup]="multipleAwbForm" (ngSubmit)="onMultipleAwb()">
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>AWB/Alternate Reference No.</mat-label>
+        <textarea matInput type="text" formControlName="awbList" rows="5"></textarea>
+      </mat-form-field>
+       <mat-form-field appearance="outline" class="full-width ml-20">
+        <mat-label>Sender Reference No.</mat-label>
+        <textarea matInput type="text" formControlName="senderRefList" rows="5"></textarea>
+      </mat-form-field>
+
+    <div class="full-width">
+        <button mat-raised-button color="primary" type="submit">Submit</button>
+    </div>
+</form>
+</div>
+
+<ng-container> 
+  <div class="container"> 
+    <mat-grid-list cols="12" rowHeight="50px">
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <div class="gridbox">
+        <button mat-raised-button color="primary">
+            <mat-icon>print</mat-icon>A6
+        </button>
+        </div>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <div class="gridbox">
+        <button mat-raised-button color="primary">
+            <mat-icon>print</mat-icon>A4
+        </button>
+        </div>
+      </mat-grid-tile>
+
+    </mat-grid-list>
+  </div>
+</ng-container>
+
+
+<ng-container> 
+    <div class="container">
+      <table mat-table class="full-width-table" aria-label="Elements" [dataSource]="shipment">
+        
+        <!-- Date Column -->
+        <ng-container matColumnDef="shipmentNo">
+          <th mat-header-cell *matHeaderCellDef >Tracking Number</th>
+          <td mat-cell *matCellDef="let row">{{row.shipmentNo}}</td>
+        </ng-container>
+    
+        <!-- Time Column -->
+        <ng-container matColumnDef="event">
+          <th mat-header-cell *matHeaderCellDef >Status</th>
+          <td mat-cell *matCellDef="let row">{{row.activity[row.activity.length - 1].event}}</td>
+        </ng-container>
+    
+        <!-- Location Column -->
+        <ng-container matColumnDef="deliveryInformation">
+          <th mat-header-cell *matHeaderCellDef >Delivery Information</th>
+          <td mat-cell *matCellDef="let row">{{row.eventLocation}}</td>
+        </ng-container>
+    
+        <!-- Activity Column -->
+        <ng-container matColumnDef="view">
+          <th mat-header-cell *matHeaderCellDef >Details</th>
+          <td mat-cell *matCellDef="let row">{{row.event}}</td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="columnsName"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnsName;"></tr>
+      </table>
+    </div>
+    </ng-container>
+  

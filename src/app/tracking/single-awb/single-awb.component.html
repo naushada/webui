@@ -1,11 +1,13 @@
 <div class="container">
   <form [formGroup]="singleAwbForm" novalidate (ngSubmit)="onSingleAwb()">
   
-  <mat-form-field class="full-width">
-    <input matInput type="text" placeholder="AWB No or Alt. Ref. No" formControlName="awbNo">
+  <mat-form-field class="full-width" appearance="outline">
+    <mat-label>AWB or Alternate Reference No</mat-label>
+    <input matInput type="text"  formControlName="awbNo">
   </mat-form-field>
-   <mat-form-field class="full-width ml-20">
-    <input matInput type="text" placeholder="Sender Reference No." formControlName="senderRefNo">
+   <mat-form-field class="full-width ml-20" appearance="outline">
+     <mat-label>Sender Reference No.</mat-label>
+    <input matInput type="text" formControlName="senderRefNo">
   </mat-form-field>
  
   <div class="full-width">
