@@ -10,10 +10,65 @@
       </mat-form-field>
 
     <div class="full-width">
-        <button mat-raised-button color="primary" type="submit">Submit</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="isBtnDisabled">Submit</button>
     </div>
 </form>
 </div>
+
+
+<ng-container> 
+    <div class="container">
+      <table mat-table class="full-width-table" aria-label="Elements" [dataSource]="shipment">
+        
+        <!-- Date Column -->
+        <ng-container matColumnDef="shipmentNo">
+          <th mat-header-cell *matHeaderCellDef >Tracking Number</th>
+          <td mat-cell *matCellDef="let row">{{row.shipmentNo}}</td>
+        </ng-container>
+    
+        <!-- Time Column -->
+        <ng-container matColumnDef="event">
+          <th mat-header-cell *matHeaderCellDef >Status</th>
+          <td mat-cell *matCellDef="let row">{{row.activity[row.activity.length - 1].event}}</td>
+        </ng-container>
+    
+        <!-- Location Column -->
+        <ng-container matColumnDef="deliveryInformation">
+          <th mat-header-cell *matHeaderCellDef >Delivery Information</th>
+            <td mat-cell *matCellDef="let row">
+              <ng-container *ngIf="row.activity[row.activity.length - 1].event === 'Proof of Delivery'">
+                <div>Delivered On: {{row.activity[row.activity.length -1].date}} : {{row.activity[row.activity.length - 1].time}}</div>
+                <div>Destination: {{row.receiverCity}} - {{row.receiverCountry}}</div>
+                <div>Signed By: {{row.activity[row.activity.length - 1].notes}}</div>
+                <div>ServiceType: {{row.service}}</div>
+              </ng-container>
+              <ng-container *ngIf="!(row.activity[row.activity.length - 1].event === 'Proof of Delivery')">
+                <div>Destination: {{row.receiverCity}} - {{row.receiverCountry}}</div>
+                <div>ServiceType: {{row.service}}</div>
+              </ng-container>
+            </td>
+
+        </ng-container>
+    
+        <!-- Activity Column -->
+        <ng-container matColumnDef="view">
+          <th mat-header-cell *matHeaderCellDef >Details</th>
+          <td mat-cell *matCellDef="let row"><button mat-raised-button (click)="openDialog(row.shipmentNo)" style="width:60px"> View </button></td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="columnsName"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnsName;"></tr>
+      </table>
+      <mat-paginator #paginator
+        [length]="shipment?.length"
+        [pageIndex]="0"
+        [pageSize]="10"
+        [pageSizeOptions]="[10, 20, 50, 100, 150, 200]"
+        aria-label="Select page">
+      </mat-paginator>
+    </div>
+    </ng-container>
+  
 
 <ng-container> 
   <div class="container"> 
@@ -37,39 +92,3 @@
     </mat-grid-list>
   </div>
 </ng-container>
-
-
-<ng-container> 
-    <div class="container">
-      <table mat-table class="full-width-table" aria-label="Elements" [dataSource]="shipment">
-        
-        <!-- Date Column -->
-        <ng-container matColumnDef="shipmentNo">
-          <th mat-header-cell *matHeaderCellDef >Tracking Number</th>
-          <td mat-cell *matCellDef="let row">{{row.shipmentNo}}</td>
-        </ng-container>
-    
-        <!-- Time Column -->
-        <ng-container matColumnDef="event">
-          <th mat-header-cell *matHeaderCellDef >Status</th>
-          <td mat-cell *matCellDef="let row">{{row.activity[row.activity.length - 1].event}}</td>
-        </ng-container>
-    
-        <!-- Location Column -->
-        <ng-container matColumnDef="deliveryInformation">
-          <th mat-header-cell *matHeaderCellDef >Delivery Information</th>
-          <td mat-cell *matCellDef="let row">{{row.eventLocation}}</td>
-        </ng-container>
-    
-        <!-- Activity Column -->
-        <ng-container matColumnDef="view">
-          <th mat-header-cell *matHeaderCellDef >Details</th>
-          <td mat-cell *matCellDef="let row">{{row.event}}</td>
-        </ng-container>
-    
-        <tr mat-header-row *matHeaderRowDef="columnsName"></tr>
-        <tr mat-row *matRowDef="let row; columns: columnsName;"></tr>
-      </table>
-    </div>
-    </ng-container>
-  

@@ -46,6 +46,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MenubarComponent } from './menubar/menubar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxMatFileInputModule } from '@angular-material-components/file-input';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { ClarityModule } from "@clr/angular";
 
@@ -99,7 +100,8 @@ import { ClarityModule } from "@clr/angular";
     ReactiveFormsModule,
     HttpClientModule,
     MatInputModule,
-    ClarityModule
+    ClarityModule,
+    MatDialogModule
     
   ],
   providers: [],
