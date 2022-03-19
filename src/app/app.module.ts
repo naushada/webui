@@ -49,6 +49,7 @@ import { NgxMatFileInputModule } from '@angular-material-components/file-input';
 import { MatDialogModule } from '@angular/material/dialog';
 
 import { ClarityModule } from "@clr/angular";
+import { DialogSingleAwbComponent } from './tracking/dialog-single-awb/dialog-single-awb.component';
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import { ClarityModule } from "@clr/angular";
     ShipmentListComponent,
     MultipleAwbListComponent,
     LoginPageComponent,
-    MenubarComponent
+    MenubarComponent,
+    DialogSingleAwbComponent
   ],
   imports: [
     BrowserModule,
@@ -101,7 +103,7 @@ import { ClarityModule } from "@clr/angular";
     HttpClientModule,
     MatInputModule,
     ClarityModule,
-    MatDialogModule
+    MatDialogModule,
     
   ],
   providers: [],

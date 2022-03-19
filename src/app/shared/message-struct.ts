@@ -129,53 +129,54 @@ export class Shipment {
     receiverPhone:string;
     receiverEmail: string;
 
-    
+    //constructor()
+    constructor(_sp?: Shipment)
     constructor(_sp: Shipment ) {
 
-    this.activity = _sp.activity;
-    this.createdOn= _sp.createdOn;
-    this.createdBy = _sp.createdBy;
-    this.shipmentNo = _sp.shipmentNo;
-    this.autogenerate = _sp.autogenerate;
-    this.altRefNo = _sp.altRefNo;
+    this.activity = _sp && _sp.activity || [];
+    this.createdOn= _sp && _sp.createdOn || "";
+    this.createdBy = _sp && _sp.createdBy || "";
+    this.shipmentNo = _sp && _sp.shipmentNo || "";
+    this.autogenerate = _sp && _sp.autogenerate || false;
+    this.altRefNo = _sp && _sp.altRefNo || "";
     /*! Sender Information */
-    this.referenceNo = _sp.referenceNo;
-    this.accountCode = Number(_sp.accountCode);
-    this.companyName = _sp.companyName;
-    this.name = _sp.name;
-    this.country = _sp.country;
-    this.address = _sp.address;
-    this.city = _sp.city;
-    this.state = _sp.state;
-    this.postalCode = _sp.postalCode;
-    this.contact = _sp.contact;
-    this.phone = _sp.phone;
-    this.email = _sp.email;
-    this.recvCountryTaxId = _sp.recvCountryTaxId;
+    this.referenceNo = _sp && _sp.referenceNo || "";
+    this.accountCode = _sp && Number(_sp.accountCode) || 0;
+    this.companyName = _sp && _sp.companyName || "";
+    this.name = _sp && _sp.name || "";
+    this.country = _sp && _sp.country || "";
+    this.address = _sp && _sp.address || "";
+    this.city = _sp && _sp.city || "";
+    this.state = _sp && _sp.state || "";
+    this.postalCode = _sp && _sp.postalCode || "";
+    this.contact = _sp && _sp.contact || "";
+    this.phone = _sp && _sp.phone || "";
+    this.email = _sp && _sp.email || "";
+    this.recvCountryTaxId = _sp && _sp.recvCountryTaxId  || "";
 
     /*! Shipment Information */
-    this.service = _sp.service;
-    this.noOfItems = _sp.noOfItems;
-    this.description = _sp.description;
-    this.goodsValue = _sp.goodsValue;
-    this.customValue = _sp.customValue;
-    this.weight = _sp.weight;
-    this.weightUnit = _sp.weightUnit;
-    this.cubicWeight = _sp.cubicWeight;
-    this.codAmount = _sp.codAmount;
-    this.vat = _sp.vat;
-    this.currency = _sp.currency;
+    this.service = _sp && _sp.service || "";
+    this.noOfItems = _sp && _sp.noOfItems || "";
+    this.description = _sp && _sp.description || "";
+    this.goodsValue = _sp && _sp.goodsValue || "";
+    this.customValue = _sp && _sp.customValue || "";
+    this.weight = _sp && _sp.weight || "";
+    this.weightUnit =_sp && _sp.weightUnit || "";
+    this.cubicWeight = _sp && _sp.cubicWeight || "";
+    this.codAmount = _sp && _sp.codAmount || "";
+    this.vat = _sp && _sp.vat || "";
+    this.currency = _sp && _sp.currency || "";
       /*! Receiver Information */
-    this.sku = _sp.sku;
-    this.receiverName = _sp.receiverName;
-    this.receiverCountry = _sp.receiverCountry;
-    this.receiverAddress = _sp.receiverAddress;
-    this.receiverCity = _sp.receiverCity;
-    this.receiverState = _sp.receiverState;
-    this.receiverPostalCode = _sp.receiverPostalCode;
-    this.receiverContact = _sp.receiverContact;
-    this.receiverPhone = _sp.receiverPhone;
-    this.receiverEmail = _sp.receiverEmail;
+    this.sku = _sp && _sp.sku || "";
+    this.receiverName = _sp && _sp.receiverName || "";
+    this.receiverCountry = _sp && _sp.receiverCountry || "";
+    this.receiverAddress = _sp && _sp.receiverAddress || "";
+    this.receiverCity = _sp && _sp.receiverCity || "";
+    this.receiverState = _sp && _sp.receiverState || "";
+    this.receiverPostalCode = _sp && _sp.receiverPostalCode || "";
+    this.receiverContact = _sp && _sp.receiverContact || "";
+    this.receiverPhone = _sp && _sp.receiverPhone || "";
+    this.receiverEmail = _sp && _sp.receiverEmail || "";
   }
 }
 

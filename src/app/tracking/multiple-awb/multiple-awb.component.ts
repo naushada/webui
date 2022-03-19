@@ -6,8 +6,7 @@ import { MatTable } from '@angular/material/table';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 import { SubSink } from 'subsink';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { SingleAwbComponent } from '../single-awb/single-awb.component';
-
+import { DialogSingleAwbComponent } from 'src/app/tracking/dialog-single-awb/dialog-single-awb.component';
 
 @Component({
   selector: 'app-multiple-awb',
@@ -72,7 +71,9 @@ export class MultipleAwbComponent implements OnInit, OnDestroy {
                                 this.shipmentInfoList = new ShipmentList(rsp, rsp.length);
                                 this.shipment = rsp;
                                 this.isBtnDisabled = false;
-                                
+                                this.displayResult = true;
+                                this.multipleAwbForm.get('awbList')?.setValue("");
+                                this.multipleAwbForm.get('senderRefList')?.setValue("");
                                 //alert("Number of AWB Records are: " + this.shipmentInfoList.m_length );
                               },
                               (error: any) => {
@@ -87,6 +88,9 @@ export class MultipleAwbComponent implements OnInit, OnDestroy {
                                 this.shipmentInfoList = new ShipmentList(rsp, rsp.length);
                                 this.shipment = rsp;
                                 this.isBtnDisabled = false;
+                                this.displayResult = true;
+                                this.multipleAwbForm.get('awbList')?.setValue("");
+                                this.multipleAwbForm.get('senderRefList')?.setValue("");
                               },
                               (error: any) => {
                                 alert("Invalid ALT REF NO Number " + awbNo);
@@ -104,6 +108,9 @@ export class MultipleAwbComponent implements OnInit, OnDestroy {
                                 this.shipmentInfoList = new ShipmentList(rsp, rsp.length);
                                 this.shipment = rsp;
                                 this.isBtnDisabled = false;
+                                this.displayResult = true;
+                                this.multipleAwbForm.get('awbList')?.setValue("");
+                                this.multipleAwbForm.get('senderRefList')?.setValue("");
                               },
                               (error: any) => {
                                 alert("Invalid Shipment Number " + awbNo);
@@ -119,6 +126,7 @@ export class MultipleAwbComponent implements OnInit, OnDestroy {
                                 this.shipmentInfoList = new ShipmentList(rsp, rsp.length);
                                 this.shipment = rsp;
                                 this.isBtnDisabled = false;
+                                this.displayResult = true;
                               },
                               (error: any) => {
                                 alert("Invalid ALT REF NO Number " + awbList);
@@ -133,6 +141,7 @@ export class MultipleAwbComponent implements OnInit, OnDestroy {
                               (rsp : Shipment[]) => {
                                 this.shipmentInfoList = new ShipmentList(rsp, rsp.length);
                                 this.isBtnDisabled = false;
+                                this.displayResult = true;
                               },
                               (error: any) => {
                                 alert("Invalid Shipment Number " + awbNo);
@@ -151,6 +160,7 @@ export class MultipleAwbComponent implements OnInit, OnDestroy {
                                 this.shipmentInfoList = new ShipmentList(rsp, rsp.length);
                                 this.shipment = rsp;
                                 this.isBtnDisabled = false;
+                                this.displayResult = true;
                               },
                               (error: any) => {
                                 alert("Invalid ALT REF NO Number " + awbList);
@@ -171,11 +181,13 @@ export class MultipleAwbComponent implements OnInit, OnDestroy {
 
   
 
-  openDialog(shNo: string): void {
-    const dialogRef = this.dialog.open(SingleAwbComponent , {
-      width: '950px',
-      height:'800px',
-      data: {awbNo: `${shNo}`}
+  openDialog(sh: Shipment): void {
+    /** Publish the selected Shipment */
+    this.pubsub.emit_shipment(sh);
+    const dialogRef = this.dialog.open(DialogSingleAwbComponent , {
+      panelClass: 'fullscreen-dialog',
+      width: '100%'
+      
     });
 
     dialogRef.afterClosed().subscribe(result => {
