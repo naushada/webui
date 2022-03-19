@@ -75,7 +75,7 @@
     <mat-grid-list cols="12" rowHeight="50px">
       <mat-grid-tile [colspan]="1" [rowspan]="1">
         <div class="gridbox">
-        <button mat-raised-button color="primary">
+        <button mat-raised-button color="primary" (click)="generatePdf('A6')">
             <mat-icon>print</mat-icon>A6
         </button>
         </div>
@@ -83,7 +83,7 @@
 
       <mat-grid-tile [colspan]="1" [rowspan]="1">
         <div class="gridbox">
-        <button mat-raised-button color="primary">
+        <button mat-raised-button color="primary" (click)="generatePdf('A4')">
             <mat-icon>print</mat-icon>A4
         </button>
         </div>

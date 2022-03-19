@@ -1,1 +1,16 @@
-<p>update-status-awb works!</p>
+<div class="container">
+    <form [formGroup]="updateAwbForm" (ngSubmit)="onStatusUpdateAwb()">
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>AWB/Alternate Reference No.</mat-label>
+            <textarea matInput type="text" formControlName="awbList" rows="5"></textarea>
+          </mat-form-field>
+           <mat-form-field appearance="outline" class="full-width ml-20">
+            <mat-label>Sender Reference No.</mat-label>
+            <textarea matInput type="text" formControlName="senderRefList" rows="5"></textarea>
+          </mat-form-field>
+    
+        <div class="full-width">
+            <button mat-raised-button color="primary" type="submit" [disabled]="isBtnDisabled">Submit</button>
+        </div>
+    </form>
+    </div>

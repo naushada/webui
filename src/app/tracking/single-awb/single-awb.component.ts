@@ -39,10 +39,11 @@ export class SingleAwbComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    console.log("I am ngOnInit ");
     
+    if(this.shipmentInfo && this.shipmentInfo.shipmentNo != "") {
       this.displayResult = true;
       this.singleAwbForm.get('awbNo')?.setValue(this.shipmentInfo.shipmentNo);
+    }
     
   }
 
