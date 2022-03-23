@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Account, Shipment } from './message-struct';
+import { Account, Shipment, ShipmentStatus } from './message-struct';
 
 @Injectable({
   providedIn: 'root'
@@ -132,5 +132,18 @@ export class RestApiService {
 
   createBulkShipment(newShipment:string) : Observable<any> {
     return this.http.post<Shipment>(this.apiURL + '/api/bulk/shipping', newShipment, this.httpOptions);
+  }
+
+  updateShipment(awbNo: Array<string>, data: ShipmentStatus) : Observable<any> {
+    let param = `shipmentNo=${awbNo}`;
+
+    const options = {
+                     params: new HttpParams({fromString: param}),
+                     headers: new HttpHeaders({
+                              'Content-Type': 'application/json'
+                      })
+                    };
+    let uri: string = this.apiURL + '/api/shipment';
+    return this.http.put<any>(uri, JSON.stringify(data), options);
   }
 }

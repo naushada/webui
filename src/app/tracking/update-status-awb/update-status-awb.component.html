@@ -1,16 +1,83 @@
 <div class="container">
     <form [formGroup]="updateAwbForm" (ngSubmit)="onStatusUpdateAwb()">
-        <mat-form-field appearance="outline" class="full-width">
-            <mat-label>AWB/Alternate Reference No.</mat-label>
-            <textarea matInput type="text" formControlName="awbList" rows="5"></textarea>
-          </mat-form-field>
-           <mat-form-field appearance="outline" class="full-width ml-20">
-            <mat-label>Sender Reference No.</mat-label>
-            <textarea matInput type="text" formControlName="senderRefList" rows="5"></textarea>
-          </mat-form-field>
+
+    <mat-grid-list cols="4" rowHeight="70px" gutterSize="15px">
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+            <mat-label>Event</mat-label>
+            <mat-select formControlName="event">
+              <mat-option *ngFor="let event of EventList" [value]="event">
+                {{event}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>Date</mat-label>
+          <input matInput type="date" formControlName="date">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>Time</mat-label>
+          <input matInput type="time" formControlName="time">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="2">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>Notes</mat-label>
+          <textarea matInput type="text" formControlName="notes" rows="7"></textarea>
+        </mat-form-field>
+      </mat-grid-tile>
     
+      <mat-grid-tile [colspan]="1" [rowspan]="2">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>Connote</mat-label>
+          <textarea matInput type="text" formControlName="connote" rows="7"></textarea>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+            <mat-label>Event Location</mat-label>
+            <mat-select formControlName="eventLocation">
+              <mat-option *ngFor="let city of CityNames" [value]="city">
+                {{city}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>Manual Event Location</mat-label>
+          <input matInput type="text" formControlName="manualEvtLoc">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>Driver Name</mat-label>
+          <input matInput type="text" formControlName="driverName">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>Updated By</mat-label>
+          <input matInput type="text" formControlName="updatedBy">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
         <div class="full-width">
             <button mat-raised-button color="primary" type="submit" [disabled]="isBtnDisabled">Submit</button>
         </div>
+      </mat-grid-tile>
+      </mat-grid-list>
     </form>
     </div>

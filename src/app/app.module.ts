@@ -50,7 +50,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 
 import { ClarityModule } from "@clr/angular";
 import { DialogSingleAwbComponent } from './tracking/dialog-single-awb/dialog-single-awb.component';
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -104,6 +104,7 @@ import { DialogSingleAwbComponent } from './tracking/dialog-single-awb/dialog-si
     MatInputModule,
     ClarityModule,
     MatDialogModule,
+    MatDatepickerModule,
     
   ],
   providers: [],
