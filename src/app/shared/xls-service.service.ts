@@ -16,9 +16,9 @@ const EXCEL_EXTENSION = '.xlsx';
 export class XlsServiceService implements OnDestroy, OnInit {
 
   private mBtnStatus: boolean;
-  private loggedInAcc!: Account;
+  public loggedInAcc: Account = new Account();
   private subs!: Subscription;
-  public xlsRows!: Array<ExcelDataFormat>;
+  public xlsRows: Array<ExcelDataFormat> = new Array<ExcelDataFormat>();
   public accountCodeList: Array<string> = new Array<string>();
   public custInfoList: Map<string, Account> = new Map<string, Account>(); 
 
@@ -51,15 +51,18 @@ export class XlsServiceService implements OnDestroy, OnInit {
 
   }
   
-  public onExcelSelect(evt: any) {
-    this.processExcelFile(evt);
+  public onExcelSelect(evt: any, fName:string) {
+    this.processExcelFile(evt, fName);
   }
 
-  public processExcelFile(evt: any) {
+  public processExcelFile(evt: any, fName:any) {
+    this.isBtnDisabled = true;
     let rows: any[] = [];
-    const selectedFile = evt.target.files[0];
+    //console.log(evt);
+    //const selectedFile = evt.target.files[0];
+    //console.log(selectedFile);
     const fileReader = new FileReader();
-    fileReader.readAsBinaryString(selectedFile);
+    fileReader.readAsBinaryString(fName);
 
     /** This is lamda Funtion = anonymous function */
     fileReader.onload = (event) => {
@@ -70,7 +73,7 @@ export class XlsServiceService implements OnDestroy, OnInit {
       wb.SheetNames.forEach(sheet => {
         let data = XLSX.utils.sheet_to_json(wb.Sheets[sheet]);
         rows = <any[]>data;
-        
+        console.log(wb);
         for(let idx:number = 0; idx < rows.length; ++idx) {
           this.xlsRows[idx] = new ExcelDataFormat(rows[idx]);
           this.accountCodeList.push(this.xlsRows[idx].accountCode);

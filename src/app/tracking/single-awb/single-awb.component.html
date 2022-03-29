@@ -20,8 +20,8 @@
   <div class="container"> 
     <mat-grid-list cols="5" rowHeight="1:1">
       <mat-grid-tile [colspan]="1" [rowspan]="1">
-        <div class="gridbox mat-elevation-z8"> 
-          <mat-card>
+        <div class="gridbox "> 
+          <mat-card style="height:100%">
             <mat-card-content>
               <div><b><mat-label>Connote#     :</mat-label></b> {{shipmentInfo.shipmentNo}}</div>
               <div><b><mat-label>Alt. Ref. No.:</mat-label></b> {{shipmentInfo.altRefNo}}</div>
@@ -36,14 +36,14 @@
       </mat-grid-tile>
       
       <mat-grid-tile [colspan]="4" [rowspan]="1">
-            <div class="gridbox mat-elevation-z8">
-                <mat-card>
+            <div class="gridbox">
+                <mat-card style="height:100%">
                     <mat-card-title>
                     </mat-card-title>
                     <mat-card-content>
-                      <clr-timeline>
+                      <clr-timeline style="font-size:smaller">
 
-                        <clr-timeline-step *ngFor="let st of shipmentInfo.activity" [clrState]="currentState(st.event)">
+                        <clr-timeline-step *ngFor="let st of shipmentInfo.activity; last as isLast" [clrState]="currentState(st.event, isLast)">
                           <clr-timeline-step-header>{{st.date}}:{{st.time}}</clr-timeline-step-header>
                           <clr-timeline-step-title>{{st.event}}</clr-timeline-step-title>
                           <clr-timeline-step-description>{{st.notes}}</clr-timeline-step-description>
@@ -56,11 +56,12 @@
           </mat-grid-tile>
       </mat-grid-list>
     </div>
+    
   </ng-container>
 
   <ng-container *ngIf= "displayResult == true"> 
   <div class="container">
-    <table mat-table class="full-width-table" aria-label="Elements" [dataSource]="shipmentInfo.activity.reverse()">
+    <table mat-table class="full-width-table" aria-label="Elements" [dataSource]="tmpShipmentInfo.activity">
       
       <!-- Date Column -->
       <ng-container matColumnDef="date">
@@ -118,10 +119,10 @@
  
   <ng-container *ngIf="displayResult == true">
       <div class="container"> 
-      <mat-grid-list cols="4" rowHeight="320px">
+      <mat-grid-list cols="4" rowHeight="380px">
           <mat-grid-tile [colspan]="1" [rowspan]="1">
-            <div class="gridbox mat-elevation-z8"> 
-                <mat-card>
+            <div class="gridbox"> 
+                <mat-card style="height: 100%">
                     <mat-card-title>
                       <u><b>Sender Information</b></u>
                     </mat-card-title>
@@ -141,8 +142,8 @@
           </mat-grid-tile>
             
           <mat-grid-tile [colspan]="1" [rowspan]="1">
-            <div class="gridbox mat-elevation-z8">
-                <mat-card>
+            <div class="gridbox ">
+                <mat-card style="height:100%">
                     <mat-card-title>
                       <u><b>Receiver Information</b></u>
                     </mat-card-title>
@@ -161,8 +162,8 @@
           </mat-grid-tile>
             
           <mat-grid-tile [colspan]="1" [rowspan]="1">
-            <div class="gridbox mat-elevation-z8">
-                <mat-card>
+            <div class="gridbox ">
+                <mat-card style="height:100%; margin-top: 70px">
                     <mat-card-title>
                       <u><b>Shipment Information</b></u>
                     </mat-card-title>

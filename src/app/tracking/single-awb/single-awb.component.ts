@@ -24,6 +24,7 @@ export class SingleAwbComponent implements OnInit, OnDestroy {
   acctInfo!: Account;
   shipmentInfo!: Shipment;
   displayResult: boolean = false;
+  tmpShipmentInfo!: Shipment;
 
   constructor(private fb: FormBuilder, private rest: RestApiService, private pubsub: PubsubService) { 
     this.mIsBtnDisabled = false;
@@ -65,6 +66,8 @@ export class SingleAwbComponent implements OnInit, OnDestroy {
                               .subscribe(
                               (rsp : Shipment) => {
                                 this.shipmentInfo = new Shipment(rsp);
+                                this.tmpShipmentInfo = {...this.shipmentInfo};
+                                Array.prototype.reverse.call(this.tmpShipmentInfo.activity);
                                 this.displayResult = true;
                                 this.isBtnDisabled = false;
                                 this.singleAwbForm.get('awbNo')?.setValue("");
@@ -80,6 +83,8 @@ export class SingleAwbComponent implements OnInit, OnDestroy {
                               .subscribe(
                               (rsp : Shipment) => {
                                 this.shipmentInfo = new Shipment(rsp);
+                                this.tmpShipmentInfo = {...this.shipmentInfo};
+                                Array.prototype.reverse.call(this.tmpShipmentInfo.activity);
                                 this.displayResult = true;
                                 this.isBtnDisabled = false;
                                 this.singleAwbForm.get('awbNo')?.setValue("");
@@ -96,6 +101,8 @@ export class SingleAwbComponent implements OnInit, OnDestroy {
           (rsp: Shipment) =>
           {
               this.shipmentInfo = new Shipment(rsp);
+              this.tmpShipmentInfo = {...this.shipmentInfo};
+              Array.prototype.reverse.call(this.tmpShipmentInfo.activity);
               this.displayResult = true;
               this.isBtnDisabled = false;
               this.singleAwbForm.get('senderRefNo')?.setValue("");
@@ -114,6 +121,8 @@ export class SingleAwbComponent implements OnInit, OnDestroy {
                               .subscribe(
                               (rsp : Shipment) => {
                                 this.shipmentInfo = new Shipment(rsp);
+                                this.tmpShipmentInfo = {...this.shipmentInfo};
+                                Array.prototype.reverse.call(this.tmpShipmentInfo.activity);
                                 this.displayResult = true;
                                 this.isBtnDisabled = false;
                                 this.singleAwbForm.get('awbNo')?.setValue("");
@@ -129,6 +138,8 @@ export class SingleAwbComponent implements OnInit, OnDestroy {
                               .subscribe(
                               (rsp : Shipment) => {
                                 this.shipmentInfo = new Shipment(rsp);
+                                this.tmpShipmentInfo = {...this.shipmentInfo};
+                                Array.prototype.reverse.call(this.tmpShipmentInfo.activity);
                                 this.displayResult = true;
                                 this.isBtnDisabled = false;
                                 this.singleAwbForm.get('awbNo')?.setValue("");
@@ -144,6 +155,8 @@ export class SingleAwbComponent implements OnInit, OnDestroy {
           this.rest.getShipmentBySenderRefNo(sndRefNo, acCode).subscribe(
                               (rsp : Shipment) => {
                                 this.shipmentInfo = new Shipment(rsp);
+                                this.tmpShipmentInfo = {...this.shipmentInfo};
+                                Array.prototype.reverse.call(this.tmpShipmentInfo.activity);
                                 this.displayResult = true;
                                 this.isBtnDisabled = false;
                                 this.singleAwbForm.get('senderRefNo')?.setValue("");
@@ -168,19 +181,26 @@ export class SingleAwbComponent implements OnInit, OnDestroy {
     this.mIsBtnDisabled = st;
   }
 
-  currentState(arg:string) {
-    if(arg == "notStarted") {
-      return ClrTimelineStepState.NOT_STARTED;
-    } else if( arg == "current") {
-      return ClrTimelineStepState.CURRENT;
-    } else if(arg == "processing") {
-      return ClrTimelineStepState.PROCESSING;
-    } else if(arg == "Proof of Delivery" || arg == "Shipment Returned to Sender") {
-      return ClrTimelineStepState.SUCCESS;
-    } else if(arg == "error") {
-      return ClrTimelineStepState.ERROR;
+  currentState(arg:string, isLastNode: boolean) {
+    if(isLastNode) {
+      if(arg == "notStarted") {
+        return ClrTimelineStepState.NOT_STARTED;
+      } else if( arg == "current") {
+        return ClrTimelineStepState.CURRENT;
+      } else if(arg == "Document Created") {
+        return ClrTimelineStepState.PROCESSING;
+      } else if(arg == "Proof of Delivery" || arg == "Shipment Returned to Sender") {
+        return ClrTimelineStepState.SUCCESS;
+      } else if(arg == "error") {
+        return ClrTimelineStepState.ERROR;
+      } else {
+        return ClrTimelineStepState.CURRENT;
+        //return ClrTimelineStepState.PROCESSING;
+      }
     } else {
-      return ClrTimelineStepState.CURRENT;
+      return ClrTimelineStepState.SUCCESS;
     }
   }
+
+
 }

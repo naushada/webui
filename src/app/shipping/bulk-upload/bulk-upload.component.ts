@@ -32,7 +32,7 @@ export class BulkUploadComponent implements OnInit {
   }
 
   onXLSUpload() {
-    
+    this.xls.isBtnDisabled = true;
     let listOfObj = new Array<string>();
     for(let row of this.xls.xlsRows) {
       let req:string = this.fillShipmentInfo(row);
@@ -40,13 +40,14 @@ export class BulkUploadComponent implements OnInit {
     }
 
     let arrStr = JSON.stringify(listOfObj);
+    console.log(arrStr);
     this.rest.createBulkShipment(arrStr).subscribe((rsp:any) => { 
       let record: any; 
       let jObj = JSON.stringify(rsp);
       record = JSON.parse(jObj); alert("Shipments Create are: " + record.createdShipments);
     },
-    (error: any) => {},
-    () => {});
+    (error: any) => {this.xls.isBtnDisabled = false;},
+    () => {this.xls.isBtnDisabled = false;});
 
     this.xls.custInfoList.clear();
   }
@@ -119,6 +120,7 @@ export class BulkUploadComponent implements OnInit {
   
 
   onXlsSelect(event: any) {
-    this.xls.onExcelSelect(event);
+    let fName: string = this.xlsUploadForm.value.xlsUpload;
+    this.xls.onExcelSelect(event, fName);
   }
 }
