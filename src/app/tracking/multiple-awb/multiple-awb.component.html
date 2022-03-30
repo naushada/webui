@@ -29,20 +29,20 @@
         <!-- Time Column -->
         <ng-container matColumnDef="event">
           <th mat-header-cell *matHeaderCellDef >Status</th>
-          <td mat-cell *matCellDef="let row">{{row.activity[row.activity.length - 1].event}}</td>
+          <td mat-cell *matCellDef="let row">{{row.activity[row.activity.length - 1].m_event}}</td>
         </ng-container>
     
         <!-- Location Column -->
         <ng-container matColumnDef="deliveryInformation">
           <th mat-header-cell *matHeaderCellDef >Delivery Information</th>
             <td mat-cell *matCellDef="let row">
-              <ng-container *ngIf="row.activity[row.activity.length - 1].event === 'Proof of Delivery'">
-                <div>Delivered On: {{row.activity[row.activity.length -1].date}} : {{row.activity[row.activity.length - 1].time}}</div>
+              <ng-container *ngIf="row.activity[row.activity.length - 1].m_event === 'Proof of Delivery'">
+                <div>Delivered On: {{row.activity[row.activity.length -1].m_date}} : {{row.activity[row.activity.length - 1].m_time}}</div>
                 <div>Destination: {{row.receiverCity}} - {{row.receiverCountry}}</div>
-                <div>Signed By: {{row.activity[row.activity.length - 1].notes}}</div>
+                <div>Signed By: {{row.activity[row.activity.length - 1].m_notes}}</div>
                 <div>ServiceType: {{row.service}}</div>
               </ng-container>
-              <ng-container *ngIf="!(row.activity[row.activity.length - 1].event === 'Proof of Delivery')">
+              <ng-container *ngIf="!(row.activity[row.activity.length - 1].m_event === 'Proof of Delivery')">
                 <div>Destination: {{row.receiverCity}} - {{row.receiverCountry}}</div>
                 <div>ServiceType: {{row.service}}</div>
               </ng-container>

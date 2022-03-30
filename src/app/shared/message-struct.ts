@@ -2,80 +2,80 @@ export class MessageStruct {
 }
 
 export class ShipmentStatus {
-    private mDate: string;
-    private mEvent: string;
-    private mTime: string;
-    private mNotes: string;
-    private mDriver:string;
-    private mUpdatedBy: string;
-    private mEventLocation: string;
+    date: string;
+    event: string;
+    time: string;
+    notes: string;
+    driver:string;
+    updatedBy: string;
+    eventLocation: string;
   
     constructor()
     constructor(_ac: ShipmentStatus)
     constructor(_ac?: ShipmentStatus) {
-      this.mDate = _ac && _ac.mDate || "";
-      this.mEvent = _ac && _ac.mEvent || "";
-      this.mTime = _ac && _ac.mTime || "";
-      this.mNotes = _ac && _ac.mNotes || "";
-      this.mDriver = _ac && _ac.mDriver || "";
-      this.mUpdatedBy = _ac && _ac.mUpdatedBy || "";
-      this.mEventLocation = _ac && _ac.mEventLocation || "";
+      this.date = _ac && _ac.date || "";
+      this.event = _ac && _ac.event || "";
+      this.time = _ac && _ac.time || "";
+      this.notes = _ac && _ac.notes || "";
+      this.driver = _ac && _ac.driver || "";
+      this.updatedBy = _ac && _ac.updatedBy || "";
+      this.eventLocation = _ac && _ac.eventLocation || "";
     }
   
-    set date(d: string) {
-      this.mDate = d;
+    set m_date(d: string) {
+      this.date = d;
     }
   
-    set event(d: string) {
-      this.mEvent = d;
+    set m_event(d: string) {
+      this.event = d;
     }
 
-    set time(d: string) {
-      this.mTime = d;
+    set m_time(d: string) {
+      this.time = d;
     }
 
-    set notes(d: string) {
-      this.mNotes = d;
+    set m_notes(d: string) {
+      this.notes = d;
     }
 
-    set driver(d: string) {
-      this.mDriver = d;
+    set m_driver(d: string) {
+      this.driver = d;
     }
 
-    set updatedBy(d: string) {
-      this.mUpdatedBy = d;
+    set m_updatedBy(d: string) {
+      this.updatedBy = d;
     }
 
-    set eventLocation(d: string) {
-      this.mEventLocation = d;
+    set m_eventLocation(d: string) {
+      this.eventLocation = d;
     }
     
-    get date() {
-        return(this.mDate);
+    get m_date() {
+        return(this.date);
     }
 
-    get event() {
-        return(this.mEvent);
+    get m_event() {
+        return(this.event);
     }
 
-    get time() {
-        return(this.mTime);
+    get m_time() {
+        return(this.time);
     }
 
-    get notes() {
-        return(this.mNotes);
+    get m_notes() {
+        return(this.notes);
     }
 
-    get driver() {
-        return(this.mDriver);
+    get m_driver() {
+        return(this.driver);
     }
 
-    get updatedBy() {
-        return(this.mUpdatedBy);
+    get m_updatedBy() {
+        return(this.updatedBy);
     }
 
-    get eventLocation() {
-        return(this.mEventLocation);
+    get m_eventLocation() {
+        return(this.eventLocation);
     }
 
   }
