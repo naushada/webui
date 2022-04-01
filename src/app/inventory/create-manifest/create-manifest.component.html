@@ -1,0 +1,23 @@
+
+<div class="container">
+    <form [formGroup]="createManifestForm" (ngSubmit)="onCreateManifest()">
+
+    
+        <mat-form-field appearance="outline" class="gridbox ml-10">
+            <mat-label>AKU/Product ID</mat-label>
+            <input matInput type="text" formControlName="sku">
+        </mat-form-field>
+    
+        <mat-form-field appearance="outline" class="gridbox ml-10">
+          <mat-label>Quantity</mat-label>
+          <input matInput type="number" formControlName="qty">
+        </mat-form-field>
+      
+
+      
+        <div class="full-width ml-10">
+            <button mat-raised-button color="primary" type="submit">Generate Manifest</button>
+        </div>
+      
+    </form>
+    </div>

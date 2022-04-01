@@ -52,6 +52,18 @@ import { ClarityModule } from "@clr/angular";
 import { DialogSingleAwbComponent } from './tracking/dialog-single-awb/dialog-single-awb.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 
+import { MatExpansionModule }  from '@angular/material/expansion';
+import { DownloadTemplateComponent } from './shipping/download-template/download-template.component';
+import { UpdateShipmentComponent } from './shipping/update-shipment/update-shipment.component';
+import { CreateShipmentComponent } from './shipping/create-shipment/create-shipment.component';
+import { CreateAccountComponent } from './accounting/create-account/create-account.component';
+import { AccountListComponent } from './accounting/account-list/account-list.component';
+import { UpdateAccountComponent } from './accounting/update-account/update-account.component';
+import { CreateManifestComponent } from './inventory/create-manifest/create-manifest.component';
+import { AddInventoryComponent } from './inventory/add-inventory/add-inventory.component';
+import { OutInventoryComponent } from './inventory/out-inventory/out-inventory.component';
+import { ShipmentReportComponent } from './reporting/shipment-report/shipment-report.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,7 +78,17 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MultipleAwbListComponent,
     LoginPageComponent,
     MenubarComponent,
-    DialogSingleAwbComponent
+    DialogSingleAwbComponent,
+    DownloadTemplateComponent,
+    UpdateShipmentComponent,
+    CreateShipmentComponent,
+    CreateAccountComponent,
+    AccountListComponent,
+    UpdateAccountComponent,
+    CreateManifestComponent,
+    AddInventoryComponent,
+    OutInventoryComponent,
+    ShipmentReportComponent
   ],
   imports: [
     BrowserModule,
@@ -105,7 +127,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     ClarityModule,
     MatDialogModule,
     MatDatepickerModule,
-    
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

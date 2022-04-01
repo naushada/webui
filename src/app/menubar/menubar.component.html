@@ -28,11 +28,12 @@
     <!-- Shipping -->
         <ng-container *ngIf="canItBeDisplayed('shipping')">
             <mat-nav-list>
-                <a mat-list-item [routerLink]="'/createShipment'"> <mat-icon>add_circle</mat-icon> Create Shipment </a>
-                <a mat-list-item [routerLink]="'/createBatchShipment'"> <mat-icon>cloud_upload</mat-icon>Create Batch Shipment </a>
+                
+                <a mat-list-item [routerLink]="'/batchShipment'"> <mat-icon>cloud_upload</mat-icon>Create Batch Shipment </a>
                 <a mat-list-item [routerLink]="'/shipmentList'"> <mat-icon>list</mat-icon> Shipment List </a>
-                <a mat-list-item [routerLink]="'/templateBatchShipment'"><mat-icon>get_app</mat-icon>Download Template </a>
+                <a mat-list-item [routerLink]="'/downloadTemplate'"><mat-icon>get_app</mat-icon>Download Template </a>
                 <a mat-list-item [routerLink]="'/modifyShipment'"> <mat-icon>create</mat-icon> Modify Shipment </a>
+                <a mat-list-item [routerLink]="'/createShipment'"> <mat-icon>add_circle</mat-icon> Create Shipment </a>
             </mat-nav-list>  
         </ng-container>
     <!-- Tracking -->
@@ -55,17 +56,17 @@
     <!-- Accounting -->
         <ng-container *ngIf="canItBeDisplayed('accounting')">
             <mat-nav-list>
-                <a mat-list-item [routerLink]="'/detailedReport'"> <mat-icon>add_circle</mat-icon>Create Account </a>
-                <a mat-list-item [routerLink]="'/invoicing'"> <mat-icon>cloud_upload</mat-icon>Creating Invoice </a>
-                <a mat-list-item [routerLink]="'/invoicing'"> <mat-icon>cloud_upload</mat-icon>Shipment Delivery Report </a>
+                <a mat-list-item [routerLink]="'/accountCreate'"> <mat-icon>add_circle</mat-icon>Create Account </a>
+                <a mat-list-item [routerLink]="'/accountList'"> <mat-icon>cloud_upload</mat-icon>Account List </a>
+                <a mat-list-item [routerLink]="'/updateAccount'"> <mat-icon>cloud_upload</mat-icon>Update Account </a>
             </mat-nav-list>
         </ng-container>
     <!-- Inventory -->
         <ng-container *ngIf="canItBeDisplayed('inventory')">
             <mat-nav-list>
-                <a mat-list-item [routerLink]="'/addItem'"> <mat-icon>add_circle</mat-icon>Create Product </a>
-                <a mat-list-item [routerLink]="'/removeItem'"> <mat-icon>cloud_upload</mat-icon>Delete Product </a>
-                <a mat-list-item [routerLink]="'/itemReport'"> <mat-icon>cloud_upload</mat-icon>Generate Report </a>
+                <a mat-list-item [routerLink]="'/addItem'"> <mat-icon>add_circle</mat-icon>In Inventory </a>
+                <a mat-list-item [routerLink]="'/removeItem'"> <mat-icon>cloud_upload</mat-icon>Out Inventory </a>
+                <a mat-list-item [routerLink]="'/manifest'"> <mat-icon>cloud_upload</mat-icon>Create Manifest </a>
             </mat-nav-list>
         </ng-container>
 

@@ -36,7 +36,10 @@ export class SingleAwbComponent implements OnInit, OnDestroy {
 
     /* subscribe for account info for logged in user*/
     this.subsink.sink = this.pubsub.onAccount.subscribe((acct: Account) => {this.acctInfo = acct;});
-    this.subsink.sink = this.pubsub.getSelectedShipment((ship: Shipment) => {this.shipmentInfo = new Shipment(ship);});
+    this.subsink.sink = this.pubsub.getSelectedShipment((ship: Shipment) => {this.shipmentInfo = new Shipment(ship);
+      this.tmpShipmentInfo = {...this.shipmentInfo};
+      this.tmpShipmentInfo.activity = Array.prototype.reverse.call(this.tmpShipmentInfo.activity);
+    });
   }
 
   ngOnInit(): void {
