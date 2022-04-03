@@ -489,3 +489,24 @@ export class ExcelDataFormat {
     this.receiverEmail = "";
   }
 }
+
+export class Inventory {
+  sku: string;
+  description: string;
+  qty: number;
+  updatedAt:string;
+  updatedOn: string;
+  accountCode: string;
+
+  constructor()
+  constructor(inventory?: Inventory) {
+    this.sku = inventory && inventory.sku || "";
+    this.description = inventory && inventory.description || "";
+    this.qty = inventory && inventory.qty || 0;
+    this.updatedAt = inventory && inventory.updatedAt || "";
+    this.updatedOn = inventory && inventory.updatedOn || "";
+    this.accountCode = inventory && inventory.accountCode || "";
+
+  }
+
+}

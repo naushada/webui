@@ -61,11 +61,15 @@ export class RestApiService {
     return this.http.get<Shipment>(uri, options)
   }
 
-  getShipments(fromDate:string, toDate:string, accountCode?: string): Observable<Shipment[]> {
+  getShipments(fromDate:string, toDate:string, country?:string, accountCode?: Array<string>): Observable<Shipment[]> {
     let param = `fromDate=${fromDate}&toDate=${toDate}`;
 
     if(accountCode != undefined) {
       param += `&accountCode=${accountCode}`
+    }
+
+    if(country != undefined) {
+      param += `&country=${country}`
     }
 
     const options = {params: new HttpParams({fromString: param})};

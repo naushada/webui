@@ -39,8 +39,10 @@ export class CreateManifestComponent implements OnInit {
 
   docDefinitionA9= {
     info: this.Info,
-    pageSize: "A9",
-    pageMargins: 2,
+    //pageSize: 'A9',
+    pageSize: {width: 58*2.835, height: 39 * 2.835},
+    // [left, top, right, bottom] or [horizontal, vertical] or just a number for equal margins
+    pageMargins: [1, 2, 1, 2],
     content: this.A9LabelContentsBody,
     
   };
@@ -54,16 +56,18 @@ export class CreateManifestComponent implements OnInit {
     
       let ent = [
         {
+          
           table: {
             headerRows: 0,
-            widths: [ 70 ],
+            //widths: ['80%', '90%'],
             
             body: [
               
-              [{image: this.textToBase64Barcode(this.createManifestForm.value.sku, 70), bold:false, alignment:'center'} ]
+              [{image: this.textToBase64Barcode(this.createManifestForm.value.sku, 60, 9), bold:false, alignment:'center'} ]
               
             ]
           },
+          layout: 'noBorders',
           pageBreak: 'after'
           /*
           pageBreakAfter: (currentNode:any, followingNodesOnPage:any, nodesOnNextPage:any, previousNodesOnPage:any) => {

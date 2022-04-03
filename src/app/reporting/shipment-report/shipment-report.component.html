@@ -1,1 +1,255 @@
-<p>shipment-report works!</p>
+
+<div class="container">
+    <form [formGroup]="shipmentReportForm" (ngSubmit)="onShipmentReport()">
+
+    
+        <mat-form-field appearance="outline" class="gridbox ml-10">
+            <mat-label>Start Date</mat-label>
+            <input matInput type="date" formControlName="startDate">
+        </mat-form-field>
+    
+        <mat-form-field appearance="outline" class="gridbox ml-10">
+          <mat-label>End Date</mat-label>
+          <input matInput type="date" formControlName="endDate">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="gridbox ml-10">
+            <mat-label>Receiver Country</mat-label>
+            <mat-select formControlName="receiverCountry">
+                <option *ngFor="let country of Country" [value]="country">{{country}}</option>
+            </mat-select>
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline" class="gridbox ml-10">
+            <mat-label>Account Code</mat-label>
+            <mat-select formControlName="accountCode">
+                <option *ngFor="let acc of accountList" [value]="acc">{{acc}}</option>
+            </mat-select>
+        </mat-form-field>
+
+
+      
+        <div class="full-width ml-10">
+            <button mat-raised-button color="primary" (click)="onExportToExcel()">Export To Excel</button>
+            <button mat-raised-button color="primary" type="submit" class="ml-10">Get Shipment Report</button>
+        </div>
+      
+    </form>
+    </div>
+
+    <div class="mat-elevation-z8">
+        <table mat-table class="full-width-table" matSort aria-label="Elements" [dataSource]="dataSource">
+          <!-- SKU Column -->
+          <ng-container matColumnDef="trackingNo">
+            <th mat-header-cell *matHeaderCellDef >Tracking Number</th>
+            <td mat-cell *matCellDef="let row">{{row.trackingNo}}</td>
+          </ng-container>
+      
+          <!-- Description Column -->
+          <ng-container matColumnDef="altRefNo">
+            <th mat-header-cell *matHeaderCellDef >Alternate Reference Number</th>
+            <td mat-cell *matCellDef="let row">{{row.altRefNo}}</td>
+          </ng-container>
+      
+          <!-- Description Column -->
+          <ng-container matColumnDef="accountCode">
+            <th mat-header-cell *matHeaderCellDef >Account Code</th>
+            <td mat-cell *matCellDef="let row">{{row.accountCode}}</td>
+          </ng-container>
+
+          <!-- UpdatedOn Column -->
+          <ng-container matColumnDef="createdOn">
+            <th mat-header-cell *matHeaderCellDef >Created On</th>
+            <td mat-cell *matCellDef="let row">{{row.createdOn}}</td>
+          </ng-container>
+
+
+          <!-- UpdatedAt Column -->
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef >Status</th>
+            <td mat-cell *matCellDef="let row">{{row.status}}</td>
+          </ng-container>
+
+          <!-- UpdatedAt Column -->
+          <ng-container matColumnDef="notes">
+            <th mat-header-cell *matHeaderCellDef >Notes</th>
+            <td mat-cell *matCellDef="let row">{{row.notes}}</td>
+          </ng-container>
+
+          <!-- AccountCode Column -->
+          <ng-container matColumnDef="updatedOn">
+            <th mat-header-cell *matHeaderCellDef >Updated On</th>
+            <td mat-cell *matCellDef="let row">{{row.updatedOn}}</td>
+          </ng-container>
+
+          <!-- AccountCode Column -->
+          <ng-container matColumnDef="createdBy">
+            <th mat-header-cell *matHeaderCellDef >Created By</th>
+            <td mat-cell *matCellDef="let row">{{row.createdBy}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="senderRefNo">
+            <th mat-header-cell *matHeaderCellDef >Sender Reference No.</th>
+            <td mat-cell *matCellDef="let row">{{row.senderRefNo}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="senderName">
+            <th mat-header-cell *matHeaderCellDef >Sender Name</th>
+            <td mat-cell *matCellDef="let row">{{row.senderName}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="senderCountry">
+            <th mat-header-cell *matHeaderCellDef >Sender Country</th>
+            <td mat-cell *matCellDef="let row">{{row.senderCountry}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="senderAddress">
+            <th mat-header-cell *matHeaderCellDef >Sender Address</th>
+            <td mat-cell *matCellDef="let row">{{row.senderAddress}}</td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="senderCity">
+            <th mat-header-cell *matHeaderCellDef >Sender City</th>
+            <td mat-cell *matCellDef="let row">{{row.senderCity}}</td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="senderState">
+            <th mat-header-cell *matHeaderCellDef >Sender State</th>
+            <td mat-cell *matCellDef="let row">{{row.senderState}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="senderPostalCode">
+            <th mat-header-cell *matHeaderCellDef >Sender Postal Code</th>
+            <td mat-cell *matCellDef="let row">{{row.senderPostalCode}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="senderContact">
+            <th mat-header-cell *matHeaderCellDef >Sender Contact</th>
+            <td mat-cell *matCellDef="let row">{{row.senderContact}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="senderPhone">
+            <th mat-header-cell *matHeaderCellDef >Sender Phone</th>
+            <td mat-cell *matCellDef="let row">{{row.senderPhone}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="senderEmail">
+            <th mat-header-cell *matHeaderCellDef >Sender Email</th>
+            <td mat-cell *matCellDef="let row">{{row.senderEmail}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="serviceType">
+            <th mat-header-cell *matHeaderCellDef >Service Type</th>
+            <td mat-cell *matCellDef="let row">{{row.serviceType}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="numberOfItems">
+            <th mat-header-cell *matHeaderCellDef >Number Of Items</th>
+            <td mat-cell *matCellDef="let row">{{row.numberOfItems}}</td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="goodsDescription">
+            <th mat-header-cell *matHeaderCellDef >Goods Description</th>
+            <td mat-cell *matCellDef="let row">{{row.goodsDescription}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="goodsValue">
+            <th mat-header-cell *matHeaderCellDef >Goods Value</th>
+            <td mat-cell *matCellDef="let row">{{row.goodsValue}}</td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="customsValue">
+            <th mat-header-cell *matHeaderCellDef >Customs Value</th>
+            <td mat-cell *matCellDef="let row">{{row.customsValue}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="weight">
+            <th mat-header-cell *matHeaderCellDef >Weight</th>
+            <td mat-cell *matCellDef="let row">{{row.weight}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="weightUnit">
+            <th mat-header-cell *matHeaderCellDef >Weight Unit</th>
+            <td mat-cell *matCellDef="let row">{{row.weightUnit}}</td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="codAmount">
+            <th mat-header-cell *matHeaderCellDef >COD Amount</th>
+            <td mat-cell *matCellDef="let row">{{row.codAmount}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="currency">
+            <th mat-header-cell *matHeaderCellDef >Currency</th>
+            <td mat-cell *matCellDef="let row">{{row.currency}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="sku">
+            <th mat-header-cell *matHeaderCellDef >SKU</th>
+            <td mat-cell *matCellDef="let row">{{row.sku}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="receiverName">
+            <th mat-header-cell *matHeaderCellDef >Receiver Name</th>
+            <td mat-cell *matCellDef="let row">{{row.receiverName}}</td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="receiverAddress">
+            <th mat-header-cell *matHeaderCellDef >Receiver Address</th>
+            <td mat-cell *matCellDef="let row">{{row.receiverAddress}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="receiverCity">
+            <th mat-header-cell *matHeaderCellDef >Receiver City</th>
+            <td mat-cell *matCellDef="let row">{{row.receiverCity}}</td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="receiverState">
+            <th mat-header-cell *matHeaderCellDef >Receiver State</th>
+            <td mat-cell *matCellDef="let row">{{row.receiverState}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="receiverPostalCode">
+            <th mat-header-cell *matHeaderCellDef >Receiver Postal Code</th>
+            <td mat-cell *matCellDef="let row">{{row.receiverPostalCode}}</td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="receiverContact">
+            <th mat-header-cell *matHeaderCellDef >Receiver Contact</th>
+            <td mat-cell *matCellDef="let row">{{row.receiverContact}}</td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="receiverPhone">
+            <th mat-header-cell *matHeaderCellDef >Receiver Phone</th>
+            <td mat-cell *matCellDef="let row">{{row.receiverPhone}}</td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="receiverEmail">
+            <th mat-header-cell *matHeaderCellDef >Receiver Email</th>
+            <td mat-cell *matCellDef="let row">{{row.receiverEmail}}</td>
+          </ng-container>
+
+
+          <tr mat-header-row *matHeaderRowDef="shipmentReportColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: shipmentReportColumns;"></tr>
+        </table>
+      
+        <mat-paginator #paginator
+            [length]="dataSource.data.length"
+            [pageIndex]="0"
+            [pageSize]="10"
+            [pageSizeOptions]="[10, 20, 50, 100, 150, 200]"
+            aria-label="Select page">
+        </mat-paginator>
+
+      </div>
+      
