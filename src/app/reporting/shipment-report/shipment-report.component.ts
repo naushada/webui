@@ -20,7 +20,9 @@ export class ShipmentReportComponent implements OnInit, OnDestroy {
   accountList:Array<Account> = new Array<Account>();
   acctInfo!: Account;
   Country = CountryName;
+  private mIsBtnDisabled: boolean;
 
+  dataValue:any = [];
   shipmentReportColumns:Array<string> = [
     "trackingNo", "altRefNo", "accountCode", "createdOn", "status", "notes", "updatedOn",
     "createdBy","senderRefNo","senderName","senderCountry","senderAddress","senderCity","senderState",
@@ -34,7 +36,7 @@ export class ShipmentReportComponent implements OnInit, OnDestroy {
 
   subsink= new SubSink();
   constructor(private fb:FormBuilder, private rest: RestApiService, private pubsub: PubsubService, private xls:XlsServiceService) { 
-
+    this.mIsBtnDisabled = true;
     this.subsink.sink = this.pubsub.onAccount.subscribe((acct: Account) => {this.acctInfo = acct;});
 
     this.shipmentReportForm = this.fb.group({
@@ -48,8 +50,16 @@ export class ShipmentReportComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
   }
 
+  get isBtnDisabled(): boolean {
+    return(this.mIsBtnDisabled);
+  }
+
+  set isBtnDisabled(st: boolean) {
+    this.mIsBtnDisabled = st;
+  }
   onShipmentReport() {
 
+    this.dataSource.data.length = 0;
     let startDate = formatDate(this.shipmentReportForm.value.startDate, 'dd/MM/yyyy', 'en');
     let endDate = formatDate(this.shipmentReportForm.value.endDate, 'dd/MM/yyyy', 'en');
     let accountCode = this.shipmentReportForm.value.accountCode;
@@ -104,8 +114,14 @@ export class ShipmentReportComponent implements OnInit, OnDestroy {
               receiverEmail: elm.receiverEmail
             }
 
-            this.dataSource.data.push(val);
+            this.dataValue.push(val);
           }) 
+        },
+        (error: any) => {this.dataSource.data.length = 0;},
+        () => {this.isBtnDisabled = false;
+          console.log(this.dataSource.data);
+          this.dataSource.data = this.dataValue;
+          
         });
     }
   }

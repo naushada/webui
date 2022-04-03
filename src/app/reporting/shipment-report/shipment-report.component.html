@@ -16,21 +16,19 @@
         <mat-form-field appearance="outline" class="gridbox ml-10">
             <mat-label>Receiver Country</mat-label>
             <mat-select formControlName="receiverCountry">
-                <option *ngFor="let country of Country" [value]="country">{{country}}</option>
+                <mat-option *ngFor="let country of Country" [value]="country">{{country}}</mat-option>
             </mat-select>
         </mat-form-field>
         
         <mat-form-field appearance="outline" class="gridbox ml-10">
             <mat-label>Account Code</mat-label>
             <mat-select formControlName="accountCode">
-                <option *ngFor="let acc of accountList" [value]="acc">{{acc}}</option>
+                <mat-option *ngFor="let acc of accountList" [value]="acc">{{acc}}</mat-option>
             </mat-select>
         </mat-form-field>
-
-
       
         <div class="full-width ml-10">
-            <button mat-raised-button color="primary" (click)="onExportToExcel()">Export To Excel</button>
+            <button mat-raised-button color="primary" [disabled]="isBtnDisabled" (click)="onExportToExcel()">Export To Excel</button>
             <button mat-raised-button color="primary" type="submit" class="ml-10">Get Shipment Report</button>
         </div>
       
@@ -38,7 +36,7 @@
     </div>
 
     <div class="mat-elevation-z8">
-        <table mat-table class="full-width-table" matSort aria-label="Elements" [dataSource]="dataSource">
+        <table mat-table class="full-width-table" aria-label="Elements" [dataSource]="dataSource">
           <!-- SKU Column -->
           <ng-container matColumnDef="trackingNo">
             <th mat-header-cell *matHeaderCellDef >Tracking Number</th>
