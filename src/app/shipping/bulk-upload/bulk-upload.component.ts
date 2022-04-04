@@ -31,6 +31,10 @@ export class BulkUploadComponent implements OnInit {
     return(this.xls.isBtnDisabled);
   }
 
+  onTemplateDownload() {
+    this.xls.createShipmentTemplate();
+  }
+
   onXLSUpload() {
     this.xls.isBtnDisabled = true;
     let listOfObj = new Array<string>();

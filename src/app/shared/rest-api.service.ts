@@ -14,9 +14,9 @@ export class RestApiService {
     })
   } 
 
-  private apiURL:string = 'http://localhost:8080';
+  //private apiURL:string = 'http://localhost:8080';
   //private apiURL:string = 'https://balaagh.herokuapp.com';
-  //private apiURL:string = 'https://xapp-cpkpi52p2q-uc.a.run.app';
+  private apiURL:string = 'https://xapp-cpkpi52p2q-uc.a.run.app';
   //private apiURL: string = 'https://xpmile.herokuapp.com'
   //apiURL = 'https://xpmile-wphbm7seyq-uc.a.run.app';
 
@@ -152,4 +152,10 @@ export class RestApiService {
     let uri: string = this.apiURL + '/api/shipment';
     return this.http.put<any>(uri, JSON.stringify(data), options);
   }
+
+  createAccount(newAccount:Account) : Observable<Account> {
+    return this.http.post<Account>(this.apiURL + '/api/account', JSON.stringify(newAccount), this.httpOptions);
+
+  }
+
 }

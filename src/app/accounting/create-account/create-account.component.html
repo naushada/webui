@@ -1,1 +1,153 @@
-<p>create-account works!</p>
+
+<div class="container">
+    <form [formGroup]="createAccountForm" (ngSubmit)="onCreateAccount()">
+
+    <mat-grid-list cols="4" rowHeight="70px" gutterSize="15px">
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+            <mat-label>Account Code</mat-label>
+            <input matInput type="text" formControlName="accountCode">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-checkbox (click)= "onCheckboxSelect()" formControlName="autogenerate">Auto Generate Account Code</mat-checkbox>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+            <mat-label>Account Password</mat-label>
+            <input matInput type="text" formControlName="accountPassword">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+            <mat-label>Company Name</mat-label>
+            <input matInput type="text" formControlName="companyName">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+            <mat-label>Role</mat-label>
+            <mat-select formControlName="role">
+              <mat-option *ngFor="let role of Roles" [value]="role">
+                {{role}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+            <mat-label>Name</mat-label>
+            <input matInput type="text" formControlName="name">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="2">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>Address</mat-label>
+          <textarea matInput type="text" formControlName="address" rows="7"></textarea>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+            <mat-label>City</mat-label>
+            <input matInput type="text" formControlName="city">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+            <mat-label>State</mat-label>
+            <input matInput type="text" formControlName="state">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>Postal Code</mat-label>
+          <input matInput type="text" formControlName="postalCode">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+            <mat-label>Event Location</mat-label>
+            <mat-select formControlName="country">
+              <mat-option *ngFor="let country of Countries" [value]="country">
+                {{country}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>Contact Number</mat-label>
+          <input matInput type="text" formControlName="contactNumber">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>Email</mat-label>
+          <input matInput type="text" formControlName="email">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>Quoted Amount</mat-label>
+          <input matInput type="text" formControlName="quotedAmount">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+            <mat-label>Currency</mat-label>
+            <mat-select formControlName="currency">
+              <mat-option *ngFor="let currency of Currencies" [value]="currency">
+                {{currency}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>VAT</mat-label>
+          <input matInput type="text" formControlName="vat">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>Trading License</mat-label>
+          <input matInput type="text" formControlName="tradingLicense">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>Bank Account Number</mat-label>
+          <input matInput type="text" formControlName="bankAccountNumber">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>IBN Number</mat-label>
+          <input matInput type="text" formControlName="ibnNumber">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      </mat-grid-list>
+      <div class="full-width">
+        <button mat-raised-button color="primary" type="submit" >Create Account</button>
+      </div>
+    </form>
+    </div>

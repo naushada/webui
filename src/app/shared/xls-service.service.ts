@@ -172,5 +172,60 @@ export class XlsServiceService implements OnDestroy, OnInit {
     }
   }
 
+  ExcelHeading: Array<string> = [
+    "AccountCode",
+    "ReferenceNo",
+    "Weight",
+    "ReceiverCity",
+    "ReceiverName",
+    "ReceiverAddress",
+    "ReceiverPhoneNo",
+    "ReceiverAlternatePhoneNo",
+    "GoodsDescription",
+    "CodAmount",
+    "AlternateReferenceNo",
+    "CustomsValue",
+    "CustomsCurrency",
+    "SenderName"
+    /*
+    "phone",
+    "serviceType",
+    "noOfItems",
+    "goodsValue",
+    "weightUnit",
+    "cubicWeight",
+    "vat",
+    "sku",
+    "receiverCountry",
+    "receiverState",
+    "receiverPostalCode",
+    "receiverEmail"*/
+  ];
+  fileName= 'ShipmentTemplate.xlsx';
+  templateToExcel:string[][] = [this.ExcelHeading,[]];
+  createShipmentTemplate()
+  {
+    const ws: XLSX.WorkSheet=XLSX.utils.aoa_to_sheet(this.templateToExcel);
+
+    let wscols = [];
+    for (var i = 0; i < this.ExcelHeading.length; i++) {
+      wscols.push({ wch: this.ExcelHeading[i].length + 10 })
+    }
+
+    ws["!cols"] = wscols;
+    /*
+    ws.eachCell((cell:any, number:any) => {
+      cell.fill = {
+        type: 'text',
+        fgColor: {argb:'FFFFFF00'},
+        bgColor: {argb:'FF0000FF'}
+      }
+    });*/
+
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Shipment');
+    XLSX.writeFile(wb, this.fileName);
+    FileSaver.saveAs(this.fileName);
+  }
 
 }
