@@ -14,9 +14,11 @@ export class RestApiService {
     })
   } 
 
+  private apiURL:string = 'https://apigw-l7rsmphepa-uc.a.run.app';
+  
   //private apiURL:string = 'http://localhost:8080';
   //private apiURL:string = 'https://balaagh.herokuapp.com';
-  private apiURL:string = 'https://gwx.herokuapp.com';
+  //private apiURL:string = 'https://gwx.herokuapp.com';
   //private apiURL:string = 'https://xapp-cpkpi52p2q-uc.a.run.app';
   //private apiURL: string = 'https://xpmile.herokuapp.com'
   //apiURL = 'https://xpmile-wphbm7seyq-uc.a.run.app';
