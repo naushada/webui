@@ -1,1 +1,117 @@
-<p>account-list works!</p>
+
+    <div class="mat-elevation-z8">
+        <table mat-table class="full-width-table" matSort aria-label="Elements" [dataSource]="dataSource">
+          <!-- SKU Column -->
+          <ng-container matColumnDef="accountCode">
+            <th mat-header-cell *matHeaderCellDef >Account Code</th>
+            <td mat-cell *matCellDef="let row">{{row.accountCode}}
+          </ng-container>
+      
+          <!-- Description Column -->
+          <ng-container matColumnDef="accountPassword">
+            <th mat-header-cell *matHeaderCellDef >Account Password</th>
+            <td mat-cell *matCellDef="let row">{{row.accountPassword}}</td>
+          </ng-container>
+      
+          <!-- Description Column -->
+          <ng-container matColumnDef="companyName">
+            <th mat-header-cell *matHeaderCellDef >Company Name</th>
+            <td mat-cell *matCellDef="let row">{{row.companyName}}</td>
+          </ng-container>
+
+          <!-- Shelf Column -->
+          <ng-container matColumnDef="role">
+            <th mat-header-cell *matHeaderCellDef >Role</th>
+            <td mat-cell *matCellDef="let row">{{row.role}}</td>
+          </ng-container>
+
+          <!-- RowNo Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef >Name</th>
+            <td mat-cell *matCellDef="let row">{{row.name}}</td>
+          </ng-container>
+
+
+          <!-- UpdatedOn Column -->
+          <ng-container matColumnDef="address">
+            <th mat-header-cell *matHeaderCellDef >Address</th>
+            <td mat-cell *matCellDef="let row">{{row.address}}</td>
+          </ng-container>
+
+
+          <!-- UpdatedAt Column -->
+          <ng-container matColumnDef="city">
+            <th mat-header-cell *matHeaderCellDef >City</th>
+            <td mat-cell *matCellDef="let row">{{row.city}}</td>
+          </ng-container>
+
+          <!-- AccountCode Column -->
+          <ng-container matColumnDef="state">
+            <th mat-header-cell *matHeaderCellDef >State</th>
+            <td mat-cell *matCellDef="let row">{{row.state}}</td>
+          </ng-container>
+
+          <!-- Created By Column -->
+          <ng-container matColumnDef="postalCode">
+            <th mat-header-cell *matHeaderCellDef >Postal Code</th>
+            <td mat-cell *matCellDef="let row">{{row.postalCode}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="country">
+            <th mat-header-cell *matHeaderCellDef >Country</th>
+            <td mat-cell *matCellDef="let row">{{row.country}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="contactNumber">
+            <th mat-header-cell *matHeaderCellDef >Contact Number</th>
+            <td mat-cell *matCellDef="let row">{{row.contactNumber}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef >Email</th>
+            <td mat-cell *matCellDef="let row">{{row.email}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="quotedAmount">
+            <th mat-header-cell *matHeaderCellDef >Quoted Amount</th>
+            <td mat-cell *matCellDef="let row">{{row.quotedAmount}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="currency">
+            <th mat-header-cell *matHeaderCellDef >Currency</th>
+            <td mat-cell *matCellDef="let row">{{row.currency}}</td>
+          </ng-container>
+          
+          <ng-container matColumnDef="vat">
+            <th mat-header-cell *matHeaderCellDef >VAT</th>
+            <td mat-cell *matCellDef="let row">{{row.vat}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="tradingLicense">
+            <th mat-header-cell *matHeaderCellDef >Trading License</th>
+            <td mat-cell *matCellDef="let row">{{row.tradingLicense}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="bankAccountNo">
+            <th mat-header-cell *matHeaderCellDef >Bank Account Number</th>
+            <td mat-cell *matCellDef="let row">{{row.bankAccountNo}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="ibnNo">
+            <th mat-header-cell *matHeaderCellDef >IBN Number</th>
+            <td mat-cell *matCellDef="let row">{{row.ibnNo}}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="tableColumn"></tr>
+          <tr mat-row *matRowDef="let row; columns: tableColumn;"></tr>
+        </table>
+      
+        <mat-paginator #paginator
+            [length]="dataSource.data.length"
+            [pageIndex]="0"
+            [pageSize]="10"
+            [pageSizeOptions]="[10, 20, 50, 100, 150, 200]"
+            aria-label="Select page">
+        </mat-paginator>
+
+</div>

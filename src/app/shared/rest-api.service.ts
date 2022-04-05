@@ -14,7 +14,7 @@ export class RestApiService {
     })
   } 
 
-  private apiURL:string = 'https://apigw-l7rsmphepa-uc.a.run.app';
+  rivate apiURL:string = 'https://apigw-l7rsmphepa-uc.a.run.app';
   
   //private apiURL:string = 'http://localhost:8080';
   //private apiURL:string = 'https://balaagh.herokuapp.com';
@@ -128,6 +128,13 @@ export class RestApiService {
 
     let uri: string = this.apiURL + '/api/login';
     return this.http.get<Account>(uri, options);
+  }
+
+
+  getAccountInfoList(): Observable<Account[]> {
+    
+    let uri: string = this.apiURL + '/api/accountlist';
+    return this.http.get<Account[]>(uri, this.httpOptions);
   }
 
   getCustomerInfo(accountCode: string): Observable<Account> {

@@ -74,7 +74,6 @@ export class AddInventoryComponent implements OnInit, OnDestroy {
   onDeleteRow(_sku: string) {
     this.inventoryList.forEach((elm, index) => {
       if(elm.sku == _sku) {
-        alert("Match for SKU " + _sku);
         this.inventoryList.splice(index, 1);
         this.dataSource.data = this.inventoryList;
       }
