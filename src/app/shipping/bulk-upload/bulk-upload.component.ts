@@ -44,7 +44,7 @@ export class BulkUploadComponent implements OnInit {
     }
 
     let arrStr = JSON.stringify(listOfObj);
-    console.log(arrStr);
+    
     this.rest.createBulkShipment(arrStr).subscribe((rsp:any) => { 
       let record: any; 
       let jObj = JSON.stringify(rsp);

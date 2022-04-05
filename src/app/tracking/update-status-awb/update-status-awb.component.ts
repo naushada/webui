@@ -55,17 +55,17 @@ export class UpdateStatusAwbComponent implements OnInit, OnDestroy {
     this.isBtnDisabled = true;
     let awbNo: string = this.updateAwbForm.get('connote')?.value;
     let activity: ShipmentStatus = new ShipmentStatus();
-    activity.m_date = formatDate(this.updateAwbForm.get('date')?.value, 'dd/MM/yyy', 'en');
+    activity.date = formatDate(this.updateAwbForm.get('date')?.value, 'dd/MM/yyy', 'en');
 
-    activity.m_event = this.updateAwbForm.get('event')?.value;
-    activity.m_time = this.updateAwbForm.get('time')?.value;
-    activity.m_notes = this.updateAwbForm.get('notes')?.value;
-    activity.m_driver = this.updateAwbForm.get('driverName')?.value;
-    activity.m_updatedBy = this.updateAwbForm.get('updatedBy')?.value;
-    activity.m_eventLocation = this.updateAwbForm.get('eventLocation')?.value;
+    activity.event = this.updateAwbForm.get('event')?.value;
+    activity.time = this.updateAwbForm.get('time')?.value;
+    activity.notes = this.updateAwbForm.get('notes')?.value;
+    activity.driver = this.updateAwbForm.get('driverName')?.value;
+    activity.updatedBy = this.updateAwbForm.get('updatedBy')?.value;
+    activity.eventLocation = this.updateAwbForm.get('eventLocation')?.value;
 
     if(this.updateAwbForm.get('manualEvtLoc')?.value.length) {
-      activity.m_eventLocation = this.updateAwbForm.get('manualEvtLoc')?.value;
+      activity.eventLocation = this.updateAwbForm.get('manualEvtLoc')?.value;
     }
 
     let awbNoList = new Array<string>();
