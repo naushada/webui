@@ -497,6 +497,9 @@ export class Inventory {
   updatedAt:string;
   updatedOn: string;
   accountCode: string;
+  shelf:string;
+  rowNo:string;
+  createdBy:string;
 
   constructor()
   constructor(inventory?: Inventory) {
@@ -506,6 +509,9 @@ export class Inventory {
     this.updatedAt = inventory && inventory.updatedAt || "";
     this.updatedOn = inventory && inventory.updatedOn || "";
     this.accountCode = inventory && inventory.accountCode || "";
+    this.shelf = inventory && inventory.shelf || "";
+    this.rowNo = inventory && inventory.rowNo || "";
+    this.createdBy = inventory && inventory.createdBy || "";
 
   }
 
