@@ -13,7 +13,7 @@ import { SubSink } from 'subsink';
 export class AccountListComponent implements OnInit, OnDestroy {
 
   subsink = new SubSink();
-  accountList!: Array<Account>;
+  accountList: Array<any> = [];
   acctInfo!: Account;
 
   dataSource = new MatTableDataSource<Account>();
@@ -36,7 +36,28 @@ export class AccountListComponent implements OnInit, OnDestroy {
   onAccountList() {
     this.rest.getAccountInfoList().subscribe((elm: Account[]) => {
       elm.forEach((ac: Account) => {
-        this.accountList.push(new Account(ac));
+        let ent = {
+          accountCode: ac.accountCode,
+          accountPassword: ac.accountPassword,
+          companyName: ac.companyName,
+          role: ac.role,
+          name: ac.name,
+          address: ac.address,
+          city: ac.city,
+          state: ac.state,
+          postalCode: ac.postalCode,
+          country: ac.country,
+          contactNumber: ac.contact,
+          email: ac.email,
+          quotedAmount: ac.quotedAmount,
+          currency: ac.currency,
+          vat: ac.vat,
+          tradingLicense: ac.tradingLicense,
+          bankAccountNo: ac.bankAccountNo,
+          ibnNo: ac.ibnNo
+
+        };
+        this.accountList.push(ent);
       });
     },
     (error: any) => {},

@@ -7,6 +7,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddInventoryComponent } from './inventory/add-inventory/add-inventory.component';
 import { CreateManifestComponent } from './inventory/create-manifest/create-manifest.component';
 import { OutInventoryComponent } from './inventory/out-inventory/out-inventory.component';
+import { SearchProductComponent } from './inventory/search-product/search-product.component';
 import { LoginPageComponent } from './login/login-page/login-page.component';
 import { MenubarComponent } from './menubar/menubar.component';
 import { ShipmentReportComponent } from './reporting/shipment-report/shipment-report.component';
@@ -40,7 +41,8 @@ const routes: Routes = [
   {path: 'accountCreate', component:CreateAccountComponent},
   {path: 'accountList', component:AccountListComponent},
   {path: 'updateAccount', component:UpdateAccountComponent},
-  {path: 'detailedReport', component:ShipmentReportComponent}
+  {path: 'detailedReport', component:ShipmentReportComponent},
+  {path: 'findSku', component:SearchProductComponent}
   //{path: '', component:LoginPageComponent},
 ];
 

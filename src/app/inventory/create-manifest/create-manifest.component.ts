@@ -63,7 +63,7 @@ export class CreateManifestComponent implements OnInit {
             
             body: [
               
-              [{image: this.textToBase64Barcode(this.createManifestForm.value.sku, 60, 9), bold:false, alignment:'center'} ]
+              [{image: this.textToBase64Barcode(this.createManifestForm.value.sku, 80), alignment:'left'} ]
               
             ]
           },
@@ -82,7 +82,7 @@ export class CreateManifestComponent implements OnInit {
 
   textToBase64Barcode(text: string, ht:number, fSize: number = 10) {
     var canvas = document.createElement("canvas");
-    JsBarcode(canvas, text, {format: "CODE128", height: ht, fontOptions: 'bold', fontSize: fSize});
+    JsBarcode(canvas, text, {format: "CODE128", height: ht, fontSize: fSize, textAlign:'left'});
     return canvas.toDataURL("image/png");
   }
 

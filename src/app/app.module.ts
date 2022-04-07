@@ -63,6 +63,7 @@ import { CreateManifestComponent } from './inventory/create-manifest/create-mani
 import { AddInventoryComponent } from './inventory/add-inventory/add-inventory.component';
 import { OutInventoryComponent } from './inventory/out-inventory/out-inventory.component';
 import { ShipmentReportComponent } from './reporting/shipment-report/shipment-report.component';
+import { SearchProductComponent } from './inventory/search-product/search-product.component';
 
 @NgModule({
   declarations: [
@@ -88,7 +89,8 @@ import { ShipmentReportComponent } from './reporting/shipment-report/shipment-re
     CreateManifestComponent,
     AddInventoryComponent,
     OutInventoryComponent,
-    ShipmentReportComponent
+    ShipmentReportComponent,
+    SearchProductComponent
   ],
   imports: [
     BrowserModule,
