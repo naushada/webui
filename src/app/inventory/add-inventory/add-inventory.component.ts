@@ -41,7 +41,21 @@ export class AddInventoryComponent implements OnInit, OnDestroy {
 
 
   onInventoryAdd(): void {
-    
+    let inv: Inventory = new Inventory();
+    inv.sku = this.addInventoryForm.value.sku;
+    inv.description = this.addInventoryForm.value.description;
+    inv.qty = this.addInventoryForm.value.qty;
+    inv.updatedAt = this.addInventoryForm.value.updatedAt;
+    inv.updatedOn = formatDate(this.addInventoryForm.value.updatedOn, 'dd/MM/yyyy', 'en');
+    inv.accountCode = this.addInventoryForm.value.accountCode;
+    inv.shelf = this.addInventoryForm.value.shelf;
+    inv.rowNo = this.addInventoryForm.value.rowNo;
+    inv.createdBy = this.addInventoryForm.value.createdBy;
+    this.rest.createInventory(inv).subscribe((rsp: any) => {
+
+    }, 
+    (error:any) => {},
+    () => {alert("Item added to Inventory Successfully");});
       
   }
 

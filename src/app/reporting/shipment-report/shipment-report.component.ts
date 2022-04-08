@@ -48,6 +48,7 @@ export class ShipmentReportComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.onShipmentReport();
   }
 
   get isBtnDisabled(): boolean {
@@ -63,7 +64,7 @@ export class ShipmentReportComponent implements OnInit, OnDestroy {
     let startDate = formatDate(this.shipmentReportForm.value.startDate, 'dd/MM/yyyy', 'en');
     let endDate = formatDate(this.shipmentReportForm.value.endDate, 'dd/MM/yyyy', 'en');
     let accountCode = this.shipmentReportForm.value.accountCode;
-
+    
     let acList = new Array<string>();
     if(accountCode.length > 0) {
       accountCode = accountCode.trim();

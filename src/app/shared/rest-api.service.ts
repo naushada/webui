@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Account, Shipment, ShipmentStatus } from './message-struct';
+import { Account, Inventory, Shipment, ShipmentStatus } from './message-struct';
 
 @Injectable({
   providedIn: 'root'
@@ -175,4 +175,31 @@ export class RestApiService {
 
   }
 
+  getFromInventory(sku: string): Observable<Inventory> {
+    let param = `sku=${sku}`;
+
+    const options = {params: new HttpParams({fromString: param})};
+
+    let uri: string = this.apiURL + '/api/manifest';
+    return this.http.get<Inventory>(uri, options);
+  }
+
+  createInventory(product: Inventory): Observable<any> {
+
+    return this.http.post<Account>(this.apiURL + '/api/manifest', JSON.stringify(product), this.httpOptions);
+
+  }
+
+  updateInventory(sku:string, item: Inventory): Observable<any> {
+    let param = `sku=${sku}`;
+
+    const options = {
+                     params: new HttpParams({fromString: param}),
+                     headers: new HttpHeaders({
+                              'Content-Type': 'application/json'
+                      })
+                    };
+    let uri: string = this.apiURL + '/api/manifest';
+    return this.http.put<any>(uri, JSON.stringify(Inventory), options);
+  }
 }

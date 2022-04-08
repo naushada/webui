@@ -28,14 +28,14 @@ export class CreateAccountComponent implements OnInit {
       state:'',
       postalCode:'',
       country:CountryName[1],
-      contactNumber:'',
+      contact:'',
       email:'',
       quotedAmount:'',
       currency:Currency[1],
       vat:'',
       tradingLicense:'',
-      bankAccountNumber:'',
-      ibnNumber:''
+      bankAccountNo:'',
+      ibnNo:''
     });
   }
 

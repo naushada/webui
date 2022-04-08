@@ -39,6 +39,8 @@ export class SingleAwbComponent implements OnInit, OnDestroy {
     this.subsink.sink = this.pubsub.getSelectedShipment((ship: Shipment) => {this.shipmentInfo = new Shipment(ship);
       this.tmpShipmentInfo = {...this.shipmentInfo};
       this.tmpShipmentInfo.activity = Array.prototype.reverse.call(this.tmpShipmentInfo.activity);
+      //this.tmpShipmentInfo.activity = Array.from(this.shipmentInfo.activity);
+      //this.tmpShipmentInfo.activity.reverse();
     });
   }
 
@@ -62,7 +64,7 @@ export class SingleAwbComponent implements OnInit, OnDestroy {
     let sndRefNo = this.singleAwbForm.value.senderRefNo;
 
     if(this.acctInfo.role == "Employee") {
-      console.log("awbNo.length :" + awbNo.length);
+      
       if(awbNo.length > 0) {
         if(awbNo.startsWith("5497") == true) {
           this.rest.getShipmentByAwbNo(awbNo) 
