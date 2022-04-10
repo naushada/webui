@@ -11,12 +11,22 @@ import { MatAccordion }  from '@angular/material/expansion';
 export class NewShipmentComponent implements OnInit {
 
   newShipmentForm!: FormGroup;
-  constructor(private fb: FormBuilder, private rest:RestApiService) { }
+  constructor(private fb: FormBuilder, private rest:RestApiService) { 
+    this.newShipmentForm = this.fb.group({
+      shipmentNo: '',
+      autogenerate: false,
+      altRefNo:''
+    });
+  }
 
   ngOnInit(): void {
   }
 
   onCreateAwb() {
 
+  }
+
+  onCheckboxSelect() {
+    
   }
 }
