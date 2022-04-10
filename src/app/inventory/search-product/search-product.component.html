@@ -1,1 +1,90 @@
-<p>search-product works!</p>
+<div class="container">
+    <form [formGroup]="findInventoryForm" (ngSubmit)="onInventoryFind()">
+      <mat-grid-list cols="4" rowHeight="70px" gutterSize="15px">
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox ml-10">
+            <mat-label>SKU/Product ID</mat-label>
+            <input matInput type="text" formControlName="sku">
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox ml-10">
+          <mat-label>Account Code</mat-label>
+          <input matInput type="number" formControlName="accCode">
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <div class="full-width">
+        <button mat-raised-button color="primary" type="submit" class="ml-10">Get Product Details</button>
+    </div>
+      
+    </form>
+    </div>
+
+    <div class="mat-elevation-z8">
+        <table mat-table class="full-width-table" matSort aria-label="Elements" [dataSource]="dataSource">
+          <!-- SKU Column -->
+          <ng-container matColumnDef="sku">
+            <th mat-header-cell *matHeaderCellDef >SKU/Product ID</th>
+            <td mat-cell *matCellDef="let row">{{row.sku}}</td>
+          </ng-container>
+      
+          <!-- Description Column -->
+          <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef >Description</th>
+            <td mat-cell *matCellDef="let row">{{row.description}}</td>
+          </ng-container>
+
+          <!-- Description Column -->
+          <ng-container matColumnDef="qty">
+            <th mat-header-cell *matHeaderCellDef >Quantity</th>
+            <td mat-cell *matCellDef="let row">{{row.qty}}</td>
+          </ng-container>
+
+           <!-- Description Column -->
+          <ng-container matColumnDef="shelf">
+            <th mat-header-cell *matHeaderCellDef >Shelf</th>
+            <td mat-cell *matCellDef="let row">{{row.shelf}}</td>
+          </ng-container>
+
+           <!-- Description Column -->
+           <ng-container matColumnDef="rowNo">
+            <th mat-header-cell *matHeaderCellDef >Row Number</th>
+            <td mat-cell *matCellDef="let row">{{row.rowNo}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="updatedAt">
+            <th mat-header-cell *matHeaderCellDef >Updated At</th>
+            <td mat-cell *matCellDef="let row">{{row.updatedAt}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="updatedOn">
+            <th mat-header-cell *matHeaderCellDef >Updated On</th>
+            <td mat-cell *matCellDef="let row">{{row.updatedOn}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="accountCode">
+            <th mat-header-cell *matHeaderCellDef >Account Code</th>
+            <td mat-cell *matCellDef="let row">{{row.accountCode}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="createdBy">
+            <th mat-header-cell *matHeaderCellDef >Created By</th>
+            <td mat-cell *matCellDef="let row">{{row.createdBy}}</td>
+          </ng-container>
+
+
+          <tr mat-header-row *matHeaderRowDef="findColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: findColumns;"></tr>
+        </table>
+      
+        <mat-paginator #paginator
+            [length]="dataSource.data?.length"
+            [pageIndex]="0"
+            [pageSize]="10"
+            [pageSizeOptions]="[10, 20, 50, 100, 150, 200]"
+            aria-label="Select page">
+        </mat-paginator>
+
+      </div>
+      

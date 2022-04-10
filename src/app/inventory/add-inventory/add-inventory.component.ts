@@ -29,7 +29,7 @@ export class AddInventoryComponent implements OnInit, OnDestroy {
     this.addInventoryForm = this.fb.group({
       sku:'',
       description:'',
-      qty:'',
+      qty:0,
       updatedAt:'',
       updatedOn:'',
       shelf:'',

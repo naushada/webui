@@ -175,13 +175,17 @@ export class RestApiService {
 
   }
 
-  getFromInventory(sku: string): Observable<Inventory> {
+  getFromInventory(sku: string, acc?: string): Observable<Inventory[]> {
     let param = `sku=${sku}`;
+
+    if(acc && acc.length > 0) {
+      param += `accountCode=${acc}`;
+    }
 
     const options = {params: new HttpParams({fromString: param})};
 
     let uri: string = this.apiURL + '/api/manifest';
-    return this.http.get<Inventory>(uri, options);
+    return this.http.get<Inventory[]>(uri, options);
   }
 
   createInventory(product: Inventory): Observable<any> {
@@ -190,8 +194,12 @@ export class RestApiService {
 
   }
 
-  updateInventory(sku:string, item: Inventory): Observable<any> {
-    let param = `sku=${sku}`;
+  updateInventory(sku:string, qty:number, acc?: string): Observable<any> {
+    let param = `sku=${sku}&qty=${qty}`;
+    
+    if(acc && acc.length) {
+      param += `&accountCode=${acc}`;
+    }
 
     const options = {
                      params: new HttpParams({fromString: param}),
