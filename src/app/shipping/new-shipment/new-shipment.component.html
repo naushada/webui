@@ -8,78 +8,324 @@
             </mat-panel-title>
         </mat-expansion-panel-header>
         <div class="container">
-            <mat-grid-list cols="4" rowHeight="70px" gutterSize="15px">
-              <mat-grid-tile [colspan]="1" [rowspan]="1">
-                <mat-form-field appearance="outline" class="gridbox">
-                    <mat-label>shipmentNo.</mat-label>
-                    <input matInput type="text" formControlName="shipmentNo">
-                </mat-form-field>
-              </mat-grid-tile>
+          <mat-grid-list cols="4" rowHeight="70px" gutterSize="15px">
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+              <mat-form-field appearance="outline" class="gridbox">
+                <mat-label>shipmentNo.</mat-label>
+                <input matInput type="text" formControlName="shipmentNo">
+              </mat-form-field>
+            </mat-grid-tile>
         
-              <mat-grid-tile [colspan]="1" [rowspan]="1">
-                  <mat-checkbox (click)= "onCheckboxSelect()" formControlName="autogenerate">Auto Generate Account Code</mat-checkbox>
-              </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+              <mat-checkbox (click)= "onCheckboxSelect()" formControlName="autogenerate">Auto Generate Account Code</mat-checkbox>
+            </mat-grid-tile>
         
-              <mat-grid-tile [colspan]="1" [rowspan]="1">
-                <mat-form-field appearance="outline" class="gridbox">
-                  <mat-label>Alternate Reference No.</mat-label>
-                  <input matInput type="text" formControlName="altRefNo">
-                </mat-form-field>
-              </mat-grid-tile>
-        
-             <!-- <mat-grid-tile [colspan]="1" [rowspan]="2">
-                <mat-form-field appearance="outline" class="gridbox">
-                  <mat-label>Notes</mat-label>
-                  <textarea matInput type="text" formControlName="notes" rows="7"></textarea>
-                </mat-form-field>
-              </mat-grid-tile>
-            
-              <mat-grid-tile [colspan]="1" [rowspan]="2">
-                <mat-form-field appearance="outline" class="gridbox">
-                  <mat-label>Connote</mat-label>
-                  <textarea matInput type="text" formControlName="connote" rows="7"></textarea>
-                </mat-form-field>
-              </mat-grid-tile>
-        
-              <mat-grid-tile [colspan]="1" [rowspan]="1">
-                <mat-form-field appearance="outline" class="gridbox">
-                    <mat-label>Event Location</mat-label>
-                    <mat-select formControlName="eventLocation">
-                      <mat-option *ngFor="let city of CityNames" [value]="city">
-                        {{city}}
-                      </mat-option>
-                    </mat-select>
-                </mat-form-field>
-              </mat-grid-tile>
-        
-              <mat-grid-tile [colspan]="1" [rowspan]="1">
-                <mat-form-field appearance="outline" class="gridbox">
-                  <mat-label>Manual Event Location</mat-label>
-                  <input matInput type="text" formControlName="manualEvtLoc">
-                </mat-form-field>
-              </mat-grid-tile>
-        
-              <mat-grid-tile [colspan]="1" [rowspan]="1">
-                <mat-form-field appearance="outline" class="gridbox">
-                  <mat-label>Driver Name</mat-label>
-                  <input matInput type="text" formControlName="driverName">
-                </mat-form-field>
-              </mat-grid-tile>
-        
-              <mat-grid-tile [colspan]="1" [rowspan]="1">
-                <mat-form-field appearance="outline" class="gridbox">
-                  <mat-label>Updated By</mat-label>
-                  <input matInput type="text" formControlName="updatedBy">
-                </mat-form-field>
-              </mat-grid-tile>
-        
-              <mat-grid-tile [colspan]="1" [rowspan]="1">
-                <div class="full-width">
-                    <button mat-raised-button color="primary" type="submit" [disabled]="isBtnDisabled">Submit</button>
-                </div>
-              </mat-grid-tile>-->
-              </mat-grid-list>
-            </div>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+              <mat-form-field appearance="outline" class="gridbox">
+                <mat-label>Alternate Reference No.</mat-label>
+                <input matInput type="text" formControlName="altRefNo">
+              </mat-form-field>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </div>
     </mat-expansion-panel>
 </mat-accordion>
+
+<!-- Sender Information -->
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+      <mat-panel-title>
+          <i>Sender Information</i>
+      </mat-panel-title>
+  </mat-expansion-panel-header>
+  <div class="container">
+    <mat-grid-list cols="4" rowHeight="70px" gutterSize="15px">
+     <!-- <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>Address Book</mat-label>
+          <input matInput type="text" formControlName="addressBook">
+        </mat-form-field>
+      </mat-grid-tile>
+    -->
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>Reference No.</mat-label>
+          <input matInput type="text" formControlName="referenceNo">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>Account Code</mat-label>
+          <input matInput type="text" formControlName="accountCode">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>Company Name</mat-label>
+          <input matInput type="text" formControlName="companyName">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>Name</mat-label>
+          <input matInput type="text" formControlName="name">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>Country</mat-label>
+          <input matInput type="text" formControlName="country">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>Address</mat-label>
+          <input matInput type="text" formControlName="address">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>City</mat-label>
+          <input matInput type="text" formControlName="city">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>State</mat-label>
+          <input matInput type="text" formControlName="state">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>Postal Code</mat-label>
+          <input matInput type="text" formControlName="postalCode">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>Contact</mat-label>
+          <input matInput type="text" formControlName="contact">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>Phone</mat-label>
+          <input matInput type="text" formControlName="phone">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>E-Mail</mat-label>
+          <input matInput type="text" formControlName="email">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>Receiving Country Tax ID</mat-label>
+          <input matInput type="text" formControlName="recvCountryTaxId">
+        </mat-form-field>
+      </mat-grid-tile>
+
+    </mat-grid-list>
+  </div>
+</mat-expansion-panel>
+</mat-accordion>
+
+<!-- Shipment Information -->
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+      <mat-panel-title>
+          <i>Shipment Information</i>
+      </mat-panel-title>
+  </mat-expansion-panel-header>
+  <div class="container">
+    <mat-grid-list cols="4" rowHeight="70px" gutterSize="15px">
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>SKU</mat-label>
+          <input matInput type="text" formControlName="sku">
+        </mat-form-field>
+      </mat-grid-tile>
+      <!--
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>Alternate Reference No.</mat-label>
+          <input matInput type="text" formControlName="altRefNo">
+        </mat-form-field>
+      </mat-grid-tile>
+    -->
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>Service</mat-label>
+          <input matInput type="text" formControlName="service">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>Number of items</mat-label>
+          <input matInput type="text" formControlName="noOfItems">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>Description</mat-label>
+          <input matInput type="text" formControlName="description">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>Goods Value</mat-label>
+          <input matInput type="text" formControlName="goodsValue">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>Customs Value</mat-label>
+          <input matInput type="text" formControlName="customValue">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>Weight</mat-label>
+          <input matInput type="text" formControlName="weight">
+        </mat-form-field>
+      </mat-grid-tile>
+
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>Weight Unit</mat-label>
+          <input matInput type="text" formControlName="weightUnit">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>Cubic Weight (LxWxH) </mat-label>
+          <input matInput type="text" formControlName="cubicWeight">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>COD</mat-label>
+          <input matInput type="text" formControlName="codAmount">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>VAT</mat-label>
+          <input matInput type="text" formControlName="vat">
+        </mat-form-field>
+      </mat-grid-tile>
+
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>Currency</mat-label>
+          <input matInput type="text" formControlName="currency">
+        </mat-form-field>
+      </mat-grid-tile>
+
+    </mat-grid-list>
+  </div>
+</mat-expansion-panel>
+</mat-accordion>
+
+
+<!-- Receiver Information -->
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+      <mat-panel-title>
+          <i>Receiver Information</i>
+      </mat-panel-title>
+  </mat-expansion-panel-header>
+  <div class="container">
+    <mat-grid-list cols="4" rowHeight="70px" gutterSize="15px">
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>Name</mat-label>
+          <input matInput type="text" formControlName="receiverName">
+        </mat-form-field>
+      </mat-grid-tile>
+    
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>Country</mat-label>
+          <input matInput type="text" formControlName="receiverCountry">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>Address</mat-label>
+          <input matInput type="text" formControlName="receiverAddress">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>City</mat-label>
+          <input matInput type="text" formControlName="receiverCity">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>State</mat-label>
+          <input matInput type="text" formControlName="receiverState">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>Postal Code</mat-label>
+          <input matInput type="text" formControlName="receiverPostalCode">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>Contact</mat-label>
+          <input matInput type="text" formControlName="receiverContact">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>Phone No.</mat-label>
+          <input matInput type="text" formControlName="receiverPhone">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field appearance="outline" class="gridbox">
+          <mat-label>E-Mail</mat-label>
+          <input matInput type="text" formControlName="receiverEmail">
+        </mat-form-field>
+      </mat-grid-tile>
+      
+    </mat-grid-list>
+  </div>
+</mat-expansion-panel>
+</mat-accordion>
+
 </form>
