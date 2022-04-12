@@ -64,6 +64,8 @@ import { AddInventoryComponent } from './inventory/add-inventory/add-inventory.c
 import { OutInventoryComponent } from './inventory/out-inventory/out-inventory.component';
 import { ShipmentReportComponent } from './reporting/shipment-report/shipment-report.component';
 import { SearchProductComponent } from './inventory/search-product/search-product.component';
+import { UpdateQtyComponent } from './inventory/update-qty/update-qty.component';
+import { GenerateReportComponent } from './inventory/generate-report/generate-report.component';
 
 @NgModule({
   declarations: [
@@ -90,7 +92,9 @@ import { SearchProductComponent } from './inventory/search-product/search-produc
     AddInventoryComponent,
     OutInventoryComponent,
     ShipmentReportComponent,
-    SearchProductComponent
+    SearchProductComponent,
+    UpdateQtyComponent,
+    GenerateReportComponent
   ],
   imports: [
     BrowserModule,

@@ -29,7 +29,7 @@
           </mat-grid-list>
         </div>
     </mat-expansion-panel>
-</mat-accordion>
+
 
 <!-- Sender Information -->
 <mat-expansion-panel>
@@ -82,10 +82,10 @@
         </mat-form-field>
       </mat-grid-tile>
 
-      <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <mat-grid-tile [colspan]="1" [rowspan]="2">
         <mat-form-field appearance="outline" class="gridbox">
           <mat-label>Address</mat-label>
-          <input matInput type="text" formControlName="address">
+          <textarea matInput type="text" formControlName="address" rows="7"></textarea>
         </mat-form-field>
       </mat-grid-tile>
 
@@ -141,7 +141,7 @@
     </mat-grid-list>
   </div>
 </mat-expansion-panel>
-</mat-accordion>
+
 
 <!-- Shipment Information -->
 <mat-expansion-panel>
@@ -248,7 +248,7 @@
     </mat-grid-list>
   </div>
 </mat-expansion-panel>
-</mat-accordion>
+
 
 
 <!-- Receiver Information -->
@@ -274,10 +274,10 @@
         </mat-form-field>
       </mat-grid-tile>
 
-      <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <mat-grid-tile [colspan]="1" [rowspan]="2">
         <mat-form-field appearance="outline" class="gridbox">
           <mat-label>Address</mat-label>
-          <input matInput type="text" formControlName="receiverAddress">
+          <textarea matInput type="text" formControlName="receiverAddress" rows="7"></textarea>
         </mat-form-field>
       </mat-grid-tile>
 
@@ -327,5 +327,5 @@
   </div>
 </mat-expansion-panel>
 </mat-accordion>
-
+<button mat-raised-button color="primary" type="submit" [disabled]="false" class="container">Create New Shipment</button>
 </form>

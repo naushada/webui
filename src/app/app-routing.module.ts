@@ -6,8 +6,10 @@ import { UpdateAccountComponent } from './accounting/update-account/update-accou
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddInventoryComponent } from './inventory/add-inventory/add-inventory.component';
 import { CreateManifestComponent } from './inventory/create-manifest/create-manifest.component';
+import { GenerateReportComponent } from './inventory/generate-report/generate-report.component';
 import { OutInventoryComponent } from './inventory/out-inventory/out-inventory.component';
 import { SearchProductComponent } from './inventory/search-product/search-product.component';
+import { UpdateQtyComponent } from './inventory/update-qty/update-qty.component';
 import { LoginPageComponent } from './login/login-page/login-page.component';
 import { MenubarComponent } from './menubar/menubar.component';
 import { ShipmentReportComponent } from './reporting/shipment-report/shipment-report.component';
@@ -42,7 +44,9 @@ const routes: Routes = [
   {path: 'accountList', component:AccountListComponent},
   {path: 'updateAccount', component:UpdateAccountComponent},
   {path: 'detailedReport', component:ShipmentReportComponent},
-  {path: 'findSku', component:SearchProductComponent}
+  {path: 'findSku', component:SearchProductComponent},
+  {path: 'updateQty', component:UpdateQtyComponent},
+  {path: 'generateReport', component:GenerateReportComponent}
   //{path: '', component:LoginPageComponent},
 ];
 
