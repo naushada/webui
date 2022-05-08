@@ -14,7 +14,7 @@ export class RestApiService {
     })
   } 
 
-  private apiURL:string = 'https://ajoul.herokuapp.com';
+  //private apiURL:string = 'https://ajoul.herokuapp.com';
   //private apiURL:string = 'https://apigw-l7rsmphepa-uc.a.run.app';
   
   //private apiURL:string = 'http://localhost:8080';
