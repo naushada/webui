@@ -74,9 +74,12 @@ export class ShipmentListComponent implements AfterViewInit {
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
   masterToggle() {
-    this.isAllSelected() ?
-        this.selection.clear() :
-        this.dataSource.data.forEach(row => this.selection.select(row));
+    if(this.isAllSelected()) {
+      this.selection.clear();
+      return;
+    }
+    this.dataSource.data.forEach(row => this.selection.select(row));
+    //this.selection.select(...this.dataSource.data);
   }
 
   public onGetShipmentList(): void {
@@ -130,6 +133,18 @@ export class ShipmentListComponent implements AfterViewInit {
     this.mIsBtnDisabled = st;
   }
 
+  isRowSeleted(row: Shipment): boolean {
+    let idx = 0;
+    console.log("Number of Rows selected " + this.selection.selected.length + " Value is " + this.selection.hasValue());
+    for(idx = 0; idx < this.dataValue.length; ++idx) {
+      if(this.dataValue[idx].shipmentNo === row.shipmentNo && this.selection.isSelected(this.dataValue[idx])) {
+        console.log("value of shipmentNo " + this.dataValue[idx].shipmentNo);
+        return(true);
+      }
+    }
+    return(false);
+  }
+
   /** Label A6 Generation  */
   Info = {
     title: 'A6 Label',
@@ -142,7 +157,14 @@ export class ShipmentListComponent implements AfterViewInit {
 
   buildA6ContentsBody() {
     this.A6LabelContentsBody.length = 0;
+    //this.dataValue.forEach(item=> {console.log(this.selection.isSelected(item));console.log(item);});
+
     this.awbList.m_shipmentArray.forEach((elm:Shipment) => { 
+    //  this.dataValue.forEach(elm => {
+
+      if(this.isRowSeleted(elm)) {
+        
+      
       let ent = [
         {
           table: {
@@ -168,6 +190,7 @@ export class ShipmentListComponent implements AfterViewInit {
       ];
 
       this.A6LabelContentsBody.push(ent);
+    }
     });
   }
 

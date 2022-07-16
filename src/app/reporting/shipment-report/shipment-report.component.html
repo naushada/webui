@@ -238,10 +238,10 @@
 
 
           <tr mat-header-row *matHeaderRowDef="shipmentReportColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: shipmentReportColumns;"></tr>
+          <tr mat-row *matRowDef="let row; columns: shipmentReportColumns;" ></tr>
         </table>
       
-        <mat-paginator #paginator
+        <mat-paginator #paginator showFirstLastButtons
             [length]="dataSource.data.length"
             [pageIndex]="0"
             [pageSize]="10"

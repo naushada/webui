@@ -17,7 +17,7 @@ export class AccountListComponent implements OnInit, OnDestroy {
   acctInfo!: Account;
 
   dataSource = new MatTableDataSource<Account>();
-  tableColumn:string[] = ["accountCode", "accountPassword", "companyName", "role", "name", "address", "city", "state", "postalCode", "country", "contactNumber", "email", "quotedAmount", "currency", "vat", "tradingLicense", "bankAccountNo", "ibnNo"];
+  tableColumn:Array<string> = ["accountCode", "accountPassword", "companyName", "role", "name", "address", "city", "state", "postalCode", "country", "contactNumber", "email", "quotedAmount", "currency", "vat", "tradingLicense", "bankAccountNo", "ibnNo"];
   constructor(private pubsub: PubsubService, private rest: RestApiService) { 
     this.subsink.sink = this.pubsub.onAccount.subscribe((acct: Account) => {this.acctInfo = acct;});
 
