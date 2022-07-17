@@ -1,0 +1,99 @@
+<div class="container">
+    <form [formGroup]="thirdPartyApiForm" (ngSubmit)="onCreateThirdPartyShipment()">
+        <mat-grid-list cols="5" rowHeight="70px" gutterSize="15px">
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+              <mat-checkbox style="position:absolute;left:1px;" (click)= "onCheckboxSelect('dhlExpress')" formControlName="dhlExpress">DHL Express</mat-checkbox>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+              <button mat-raised-button color="primary" style="position:absolute;left:1px;">Download Template for DHL Express</button>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+              <mat-form-field>
+                  <ngx-mat-file-input formControlName="xlsUpload" (change)="onXlsSelect($event)">
+                  </ngx-mat-file-input>
+              </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <button mat-raised-button color="primary" style="position:absolute;left:1px;">Create Shipment For DHL Express</button>
+            </mat-grid-tile>
+        </mat-grid-list>
+            
+        <mat-grid-list cols="5" rowHeight="70px" gutterSize="15px">
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <mat-checkbox style="position:absolute;left:1px;" (click)= "onCheckboxSelect('aramex')" formControlName="aramex">Aramex</mat-checkbox>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <button mat-raised-button color="primary" style="position:absolute;left:1px;width:100;">Download Template for Aramex</button>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <mat-form-field>
+                    <ngx-mat-file-input formControlName="xlsUpload" (change)="onXlsSelect($event)">
+                    </ngx-mat-file-input>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <button mat-raised-button color="primary" style="position:absolute;left:1px;">Create Shipment For Aramex</button>
+            </mat-grid-tile>
+        </mat-grid-list>
+
+        <mat-grid-list cols="5" rowHeight="70px" gutterSize="15px">
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <mat-checkbox style="position:absolute;left:1px;" (click)= "onCheckboxSelect('dtdc')" formControlName="dtdc">DTDC</mat-checkbox>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <button mat-raised-button color="primary" style="position:absolute;left:1px;">Download Template for DTDC</button>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <mat-form-field>
+                    <ngx-mat-file-input formControlName="xlsUpload" (change)="onXlsSelect($event)">
+                    </ngx-mat-file-input>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <button mat-raised-button color="primary" style="position:absolute;left:1px;">Create Shipment For DTDC</button>
+            </mat-grid-tile>
+        </mat-grid-list>
+        
+        <mat-grid-list cols="5" rowHeight="70px" gutterSize="15px">
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <mat-checkbox style="position:absolute;left:1px;" (click)= "onCheckboxSelect('sipsy')" formControlName="sipsy">SIPSY</mat-checkbox>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <button mat-raised-button color="primary" style="position:absolute;left:1px;">Download Template for SIPSY</button>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <mat-form-field>
+                    <ngx-mat-file-input formControlName="xlsUpload" (change)="onXlsSelect($event)">
+                    </ngx-mat-file-input>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <button mat-raised-button color="primary" style="position:absolute;left:1px;">Create Shipment For SIPSY</button>
+            </mat-grid-tile>
+        </mat-grid-list>
+
+    
+        <mat-grid-list cols="5" rowHeight="70px" gutterSize="15px">
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <mat-checkbox style="position:absolute;left:1px;" (click)= "onCheckboxSelect('blueDartExpress')" formControlName="blueDartExpress">Blue Dart Express</mat-checkbox>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <button mat-raised-button color="primary" style="position:absolute;left:1px;">Download Template for Blue Dart Express</button>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <mat-form-field>
+                    <ngx-mat-file-input formControlName="xlsUpload" (change)="onXlsSelect($event)">
+                    </ngx-mat-file-input>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <button mat-raised-button color="primary" style="position:absolute;left:1px;">Create Shipment For Blue Dart Express</button>
+            </mat-grid-tile>
+        </mat-grid-list>
+
+      <!--  
+      <div class="full-width">
+        <button mat-raised-button color="primary" type="submit" >Create Third Party Shipment</button>
+      </div> -->
+    </form>
+    </div>

@@ -18,6 +18,7 @@ import { CreateShipmentComponent } from './shipping/create-shipment/create-shipm
 import { DownloadTemplateComponent } from './shipping/download-template/download-template.component';
 import { NewShipmentComponent } from './shipping/new-shipment/new-shipment.component';
 import { ShipmentListComponent } from './shipping/shipment-list/shipment-list.component';
+import { ThirdPartIntegComponent } from './shipping/third-part-integ/third-part-integ.component';
 import { UpdateShipmentComponent } from './shipping/update-shipment/update-shipment.component';
 import { MultipleAwbComponent } from './tracking/multiple-awb/multiple-awb.component';
 import { SingleAwbComponent } from './tracking/single-awb/single-awb.component';
@@ -46,7 +47,8 @@ const routes: Routes = [
   {path: 'detailedReport', component:ShipmentReportComponent},
   {path: 'findSku', component:SearchProductComponent},
   {path: 'updateQty', component:UpdateQtyComponent},
-  {path: 'generateReport', component:GenerateReportComponent}
+  {path: 'generateReport', component:GenerateReportComponent},
+  {path: 'thirdPartyShipment', component:ThirdPartIntegComponent}
   //{path: '', component:LoginPageComponent},
 ];
 

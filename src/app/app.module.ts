@@ -66,6 +66,7 @@ import { ShipmentReportComponent } from './reporting/shipment-report/shipment-re
 import { SearchProductComponent } from './inventory/search-product/search-product.component';
 import { UpdateQtyComponent } from './inventory/update-qty/update-qty.component';
 import { GenerateReportComponent } from './inventory/generate-report/generate-report.component';
+import { ThirdPartIntegComponent } from './shipping/third-part-integ/third-part-integ.component';
 
 @NgModule({
   declarations: [
@@ -94,7 +95,8 @@ import { GenerateReportComponent } from './inventory/generate-report/generate-re
     ShipmentReportComponent,
     SearchProductComponent,
     UpdateQtyComponent,
-    GenerateReportComponent
+    GenerateReportComponent,
+    ThirdPartIntegComponent
   ],
   imports: [
     BrowserModule,
