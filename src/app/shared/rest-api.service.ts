@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { RequiredValidator } from '@angular/forms';
+import { forkJoin, Observable } from 'rxjs';
 import { Account, Inventory, Shipment, ShipmentStatus } from './message-struct';
 
 @Injectable({
@@ -169,6 +170,37 @@ export class RestApiService {
                     };
     let uri: string = this.apiURL + '/api/shipment';
     return this.http.put<any>(uri, JSON.stringify(data), options);
+  }
+
+  /**
+   * @brief This method sends multiple request
+   * @param awbNo An array of string
+   * @param data 
+   * @returns Observable <any>
+   */
+  updateShipmentParallel(awbNo: Array<string>, data: ShipmentStatus) : Observable<any> {
+    let start = 0;
+    let end = awbNo.length;
+    let step = 50;
+    let reqArr: Array<any> = [];
+    
+    while(start < end) {
+      
+      let subArray = awbNo.slice(start, start +=step);
+      let param = `shipmentNo=${subArray}`;
+
+      const options = {
+                       params: new HttpParams({fromString: param}),
+                       headers: new HttpHeaders({
+                                'Content-Type': 'application/json'
+                        })
+                      };
+      let uri: string = this.apiURL + '/api/shipment';
+      let req = this.http.put<any>(uri, JSON.stringify(data), options);
+      reqArr.push(req);
+    }
+    
+    return forkJoin(reqArr);
   }
 
   createAccount(newAccount:Account) : Observable<Account> {

@@ -72,7 +72,7 @@ export class UpdateStatusAwbComponent implements OnInit, OnDestroy {
     awbNo = awbNo.trim();
     awbNoList = awbNo.split("\n");
 
-    this.rest.updateShipment(awbNoList, activity).subscribe((data) => {
+    this.rest.updateShipmentParallel(awbNoList, activity).subscribe((data) => {
                           alert("Sipment Status is Updated Successfully");
                           this.updateAwbForm.get('connote')?.setValue('');
                           this.updateAwbForm.get('notes')?.setValue('');
