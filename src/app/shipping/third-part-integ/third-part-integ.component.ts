@@ -42,7 +42,6 @@ export class ThirdPartIntegComponent implements OnInit {
     let uri: string = "";
     if(this.m_vendor == 'ajoul') {
       uri = "/api/v1/ajoul/shipment/create";
-      alert("the vendor is " + this.m_vendor);
     } else {
       return;
     }
@@ -51,7 +50,7 @@ export class ThirdPartIntegComponent implements OnInit {
 
     this.rest.create3rdPartyShipment(awbList, uri, this.acctInfo.accountCode).subscribe(data=> {alert(data);},
       (error:any) => {alert("Failed for Ajoul");},
-      () => {alert("Completed For Ajoul");});
+      () => {alert("Shipment created successfully for 3rd PARTY " + this.m_vendor);});
   }
 
   setVendorName(vendor:string) {
@@ -59,7 +58,6 @@ export class ThirdPartIntegComponent implements OnInit {
   }
 
   onCheckboxSelect(vendor:string) {
-    //alert("The check box selected is " + vendor);
     this.m_vendor = vendor;
   }
 }
