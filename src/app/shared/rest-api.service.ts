@@ -18,8 +18,8 @@ export class RestApiService {
   //private apiURL:string = 'https://ajoul.herokuapp.com';
   //private apiURL:string = 'https://apigw-l7rsmphepa-uc.a.run.app';
   
-  //private apiURL:string = 'http://localhost:8080';
-  private apiURL:string = 'https://balaagh.herokuapp.com';
+  private apiURL:string = 'http://localhost:8080';
+  //private apiURL:string = 'https://balaagh.herokuapp.com';
   //private apiURL:string = 'https://gwx.herokuapp.com';
   //private apiURL:string = 'https://xapp-cpkpi52p2q-uc.a.run.app';
   //private apiURL: string = 'https://xpmile.herokuapp.com'
@@ -242,5 +242,32 @@ export class RestApiService {
                     };
     let uri: string = this.apiURL + '/api/manifest';
     return this.http.put<any>(uri, JSON.stringify(Inventory), options);
+  }
+
+  //3rd Part Shipment Creation 
+  create3rdPartyShipment(awbList:string, uri:string, acc?: string): Observable<any> {
+    let param:string = "" ;
+    let options:any;
+
+    if(acc && acc.length) {
+      param = `&accountCode=${acc}`;
+    }
+
+    if(param.length) {
+      const options = {
+                     params: new HttpParams({fromString: param}),
+                     headers: new HttpHeaders({
+                              'Content-Type': 'application/json'
+                      })
+                    };
+    } else {
+      const options = {
+        headers: new HttpHeaders({
+                 'Content-Type': 'application/json'
+         })
+       };
+    }
+    //let uri: string = this.apiURL + '/api/manifest';
+    return this.http.post<any>((this.apiURL + uri), JSON.stringify(awbList), this.httpOptions);
   }
 }
